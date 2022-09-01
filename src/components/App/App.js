@@ -1,7 +1,9 @@
+import React from 'react';
+
 import '../App/App.css';
 
-import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Header from '../Header/Header';
 import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
@@ -9,6 +11,9 @@ function App() {
     <BrowserRouter>
       <div className="app">
         <Switch>
+          <Route exact path='/'>
+            <Header />
+          </Route>
           <Route path='*'>
             <PageNotFound />
           </Route>

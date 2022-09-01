@@ -1,6 +1,8 @@
 .app {
   --main-bg-color: #202020;
+  --green-button-bg-color: #3DDC84;
   --main-text-color: #FFFFFF;
+  --secondary-text-color: #000000;
   --link-text-color: #4285F4;
   --err-text-color: #EE3465;
 }
