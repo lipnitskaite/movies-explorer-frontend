@@ -3,7 +3,7 @@
   height: 74px;
   width: 100%;
   padding: 18px 14px 18px 10px;
-  background-color: transparent;
+  background-color: var(--secondary-bg-color);
   display: flex;
   align-items: center;
   justify-content: space-between;

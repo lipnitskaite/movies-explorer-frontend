@@ -1,0 +1,35 @@
+.promo {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: var(--secondary-bg-color);
+}
+
+.promo__container {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 183px 0px 40px 0px;
+}
+
+.promo__title {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 10px;
+  margin: 0;
+  font-size: 31px;
+  font-weight: normal;
+  line-height: 1.26;
+  letter-spacing: -0.04em;
+  text-align: center;
+}
+
+.promo__image {
+  box-sizing: border-box;
+  width: 100%;
+  height: 230px;
+  background-image: url(../../images/promo_image.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-top: 60px;
+  margin-left: auto;
+}
