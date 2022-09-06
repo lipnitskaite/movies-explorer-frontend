@@ -42,8 +42,8 @@
 
 .about-project__table-title {
   margin: 0;
-  padding: 11px 10px;
-  background-color: #303030;
+  padding: 11px;
+  background-color: var(--grey-bg-color);
   font-weight: 400;
   font-size: 11px;
   line-height: 1.21;
