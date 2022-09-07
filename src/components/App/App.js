@@ -6,6 +6,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
+import Register from '../Register/Register';
 import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
@@ -17,6 +18,9 @@ function App() {
             <Header />
             <Main />
             <Footer />
+          </Route>
+          <Route path='/signup'>
+            <Register />
           </Route>
           <Route path='*'>
             <PageNotFound />

@@ -1,0 +1,124 @@
+.auth {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100vh;
+  padding: 56px 30px 30px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth__logo {
+  width: 38px;
+  height: 38px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.form__title {
+  margin: 0;
+  margin-bottom: 80px;
+  padding: 0;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29.05px;
+  text-align: center;
+}
+
+.form__container {
+  border: none;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 157px;
+  padding: 0;
+}
+
+.form__label {
+  display: block;
+  box-sizing: border-box;
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 0;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12.1px;
+  color: var(--dark-grey-text-color);
+}
+
+.form__input {
+  display: block;
+  box-sizing: border-box;
+  font-family: inherit;
+  padding: 15px;
+  margin-bottom: 20px;
+  width: 100%;
+  background-color: var(--input-bg-color);
+  border: none;
+  border-radius: 8px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15.73px;
+  color: var(--main-text-color);
+}
+
+.form__input:focus {
+  outline: 1px solid var(--blue-button-bg-color);
+}
+
+.form__input::placeholder {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15.73px;
+  color: var(--main-text-color);
+}
+
+.form__input::-webkit-input-placeholder {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15.73px;
+  color: var(--main-text-color);
+}
+
+.form__input::-moz-placeholder {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15.73px;
+  color: var(--main-text-color);
+}
+
+.form__input::-ms-input-placeholder {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15.73px;
+  color: var(--main-text-color);
+}
+
+.form__button {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 14px;
+  padding: 15px 0;
+  background-color: var(--blue-button-bg-color);
+  border: none;
+  border-radius: 3px;
+  color: var(--main-text-color);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14,52px;
+}
+
+.auth__text {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14,52px;
+  color: var(--dark-grey-text-color);
+  text-align: center;
+}
+
+.auth__link {
+  text-decoration: none;
+  color: var(--link-text-color);
+  cursor: pointer;
+}
