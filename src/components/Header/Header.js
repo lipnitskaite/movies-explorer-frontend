@@ -1,13 +1,17 @@
 import'../Header/Header.css';
 
 import React from 'react';
-import logo from '../../images/logo.svg';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import Logo from '../Logo/Logo';
 
 function Header() {
   return (
-    <header className="header">
-      <img src={logo} alt="Логотип приложения" className="header__logo" />
+    <header className="header header__type_main">
+      <Link to={'/'}>
+        <Logo
+          isAuth={false}
+        />
+      </Link>
       <nav>
         <ul className='header__nav'>
           <li className='header__nav_item'><NavLink to={`./signup`} className="header__link">Регистрация</NavLink></li>

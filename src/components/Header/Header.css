@@ -3,15 +3,13 @@
   height: 74px;
   width: 100%;
   padding: 18px 14px 18px 10px;
-  background-color: var(--secondary-bg-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.header__logo {
-  width: 38px;
-  height: 38px;
+.header__type_main {
+  background-color: var(--secondary-bg-color);
 }
 
 .header__nav {

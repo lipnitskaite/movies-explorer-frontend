@@ -1,0 +1,10 @@
+.logo {
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+}
+
+.logo__type_auth {
+  margin: 0 auto;
+  margin-bottom: 50px;
+}

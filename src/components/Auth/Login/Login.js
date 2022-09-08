@@ -3,12 +3,14 @@ import '../Auth.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import logo from '../../../images/logo.svg';
+import Logo from '../../Logo/Logo';
 
 function Register() {
   return (
     <section className='auth'>
-      <img className='auth__logo' src={logo} alt='Логотип приложения'></img>
+      <Logo 
+        isAuth={true}
+      />
       <form className='form'>
         <h2 className='form__title'>Рады видеть!</h2>
         <fieldset className='form__container'>
