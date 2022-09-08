@@ -17,12 +17,13 @@
 .form {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   height: calc(100vh - 56px - 30px);
 }
 
 .form__title {
   margin: 0;
+  margin-bottom: 80px;
   padding: 0;
   font-weight: 500;
   font-size: 24px;
@@ -101,6 +102,7 @@
   box-sizing: border-box;
   width: 100%;
   margin: 0;
+  margin-top: auto;
   margin-bottom: 14px;
   padding: 15px 0;
   background-color: var(--blue-button-bg-color);

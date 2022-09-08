@@ -1,9 +1,9 @@
-import '../Register/Register.css';
+import '../Auth.css';
 
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import logo from '../../images/logo.svg';
+import logo from '../../../images/logo.svg';
 
 function Register() {
   return (
