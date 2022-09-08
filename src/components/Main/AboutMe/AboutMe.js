@@ -1,8 +1,8 @@
-import '../AboutMe/AboutMe.css';
+import './AboutMe.css';
 
 import React from 'react';
 
-import studentPicture from '../../images/student_pic.svg';
+import studentPicture from '../../../images/student_pic.svg';
 
 function AboutMe() {
   return (

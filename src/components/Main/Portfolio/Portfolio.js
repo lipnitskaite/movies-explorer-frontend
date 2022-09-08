@@ -1,8 +1,8 @@
-import '../Portfolio/Portfolio.css';
+import './Portfolio.css';
 
 import React from 'react';
 
-import linkArrow from '../../images/portfolio_link-arrow.svg';
+import linkArrow from '../../../images/portfolio_link-arrow.svg';
 
 function Portfolio() {
   return (
