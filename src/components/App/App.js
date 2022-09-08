@@ -8,6 +8,7 @@ import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import Register from '../Auth/Register/Register';
 import Login from '../Auth/Login/Login';
+import Movies from '../Movies/Movies';
 import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
@@ -16,7 +17,9 @@ function App() {
       <div className="app">
         <Switch>
           <Route exact path='/'>
-            <Header />
+            <Header
+              isLoggedIn={false}
+            />
             <Main />
             <Footer />
           </Route>
@@ -25,6 +28,12 @@ function App() {
           </Route>
           <Route path='/signin'>
             <Login />
+          </Route>
+          <Route path='/movies'>
+            <Header
+              isLoggedIn={true}
+            />
+            <Movies />
           </Route>
           <Route path='*'>
             <PageNotFound />
