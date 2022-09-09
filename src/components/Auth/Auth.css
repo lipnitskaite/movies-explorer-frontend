@@ -7,6 +7,11 @@
   flex-direction: column;
 }
 
+.auth__logo-link {
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
 .form {
   display: flex;
   flex-direction: column;

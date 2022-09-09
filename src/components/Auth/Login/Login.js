@@ -8,9 +8,9 @@ import Logo from '../../Logo/Logo';
 function Register() {
   return (
     <section className='auth'>
-      <Logo 
-        isAuth={true}
-      />
+      <Link className='auth__logo-link' to={'/'}>
+        <Logo />
+      </Link>
       <form className='form'>
         <h2 className='form__title'>Рады видеть!</h2>
         <fieldset className='form__container'>

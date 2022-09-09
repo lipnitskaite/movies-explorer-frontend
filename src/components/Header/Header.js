@@ -8,9 +8,7 @@ function Header(props) {
   return (
     <header className={props.isLoggedIn ? "header" : "header header__type_main"}>
       <Link to={'/'}>
-        <Logo
-          isAuth={false}
-        />
+        <Logo />
       </Link>
       <nav className={props.isLoggedIn ? 'header__nav header__nav_disabled' : 'header__nav'}>
         <ul className='header__list'>

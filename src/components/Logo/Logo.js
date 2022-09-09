@@ -5,7 +5,7 @@ import logo from '../../images/logo.svg';
 
 function Logo(props) {
   return (
-    <img className={props.isAuth ? "logo logo__type_auth" : "logo"} src={logo} alt="Логотип приложения" />
+    <img className="logo" src={logo} alt="Логотип приложения" />
   );
 }
 
