@@ -1,10 +1,16 @@
 import'../Header/Header.css';
 
-import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
+import Navigation from '../Navigation/Navigation';
 
 function Header(props) {
+  const [isNavigationPopupOpen, setIsNavigationPopupOpen] = useState(false);
+
+  const openNavigationPopup = () => {setIsNavigationPopupOpen(true)};
+  const closeNavigationPopup = () => {setIsNavigationPopupOpen(false)};
+
   return (
     <header className={props.isLoggedIn ? "header" : "header header__type_main"}>
       <Link to={'/'}>
@@ -12,11 +18,19 @@ function Header(props) {
       </Link>
       <nav className={props.isLoggedIn ? 'header__nav header__nav_disabled' : 'header__nav'}>
         <ul className='header__list'>
-          <li className='header__nav_item'><NavLink to={`./signup`} className="header__link">Регистрация</NavLink></li>
-          <li className='header__nav_item'><NavLink to={`./signin`} className="header__link header__link_type_button">Войти</NavLink></li>
+          <li className='header__nav_item'><Link to={`./signup`} className="header__link">Регистрация</Link></li>
+          <li className='header__nav_item'><Link to={`./signin`} className="header__link header__link_type_button">Войти</Link></li>
         </ul> 
       </nav>
-      <button className={props.isLoggedIn ? 'header__menu-button' : 'header__menu-button_disabled'} type='button'></button>
+      <button 
+        className={props.isLoggedIn ? 'header__menu-button' : 'header__menu-button_disabled'}
+        type='button'
+        onClick={openNavigationPopup}
+      ></button>
+      <Navigation
+        isOpen={isNavigationPopupOpen}
+        onClose={closeNavigationPopup}
+      />
     </header>
   );
 }
