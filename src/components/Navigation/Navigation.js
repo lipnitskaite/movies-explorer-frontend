@@ -1,6 +1,6 @@
 import'../Navigation/Navigation.css';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
         
 function Navigation({ isOpen, onClose }) {
