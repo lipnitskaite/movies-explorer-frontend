@@ -11,10 +11,15 @@
   right: 0;
   visibility: hidden;
   padding: 13.4px 13.4px 46px 0;
+  z-index: 10;
+  opacity: 0;
+  transition: visibility .4s, opacity .4s;
 }
 
 .menu_opened {
   visibility: visible;
+  opacity: 1;
+  transition: visibility .4s, opacity .4s;
 }
 
 .menu__close-button {
