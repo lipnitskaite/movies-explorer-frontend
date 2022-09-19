@@ -25,3 +25,7 @@
   line-height: 1.21;
   cursor: pointer;
 }
+
+.movies__button_disabled {
+  display: none;
+}

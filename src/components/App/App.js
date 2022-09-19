@@ -9,6 +9,7 @@ import Footer from '../Footer/Footer';
 import Register from '../Auth/Register/Register';
 import Login from '../Auth/Login/Login';
 import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import PageNotFound from '../PageNotFound/PageNotFound';
 
@@ -35,6 +36,13 @@ function App() {
               isLoggedIn={true}
             />
             <Movies />
+            <Footer />
+          </Route>
+          <Route path='/saved-movies'>
+            <Header
+              isLoggedIn={true}
+            />
+            <SavedMovies />
             <Footer />
           </Route>
           <Route path='/profile'>

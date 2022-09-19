@@ -45,6 +45,24 @@
   background-color: var(--checkbox-enabled-bg-color);
 }
 
+.movie-card__toggle_disabled {
+  display: none;
+}
+
+.movie-card__button {
+  box-sizing: border-box;
+  background: url('../../../../images/card_delete-button.svg') no-repeat center;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  width: 8px;
+  border: none;
+}
+
+.movie-card__button_disabled {
+  display: none;
+}
+
 .movie-card__text {
   margin: 0;
   padding: 0;
