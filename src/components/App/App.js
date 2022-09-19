@@ -9,6 +9,7 @@ import Footer from '../Footer/Footer';
 import Register from '../Auth/Register/Register';
 import Login from '../Auth/Login/Login';
 import Movies from '../Movies/Movies';
+import Profile from '../Profile/Profile';
 import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
@@ -35,6 +36,12 @@ function App() {
             />
             <Movies />
             <Footer />
+          </Route>
+          <Route path='/profile'>
+            <Header
+              isLoggedIn={true}
+            />
+            <Profile />
           </Route>
           <Route path='*'>
             <PageNotFound />
