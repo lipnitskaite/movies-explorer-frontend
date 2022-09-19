@@ -34,6 +34,7 @@ function App() {
               isLoggedIn={true}
             />
             <Movies />
+            <Footer />
           </Route>
           <Route path='*'>
             <PageNotFound />

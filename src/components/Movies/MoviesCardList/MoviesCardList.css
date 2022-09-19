@@ -1,7 +1,27 @@
 .movies {
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 50px 0 80px 0;
   margin: 0 10px;
   width: calc(100% - 20px);
   border-top: 1px solid #424242;
+}
+
+.movies__button {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 339px;
+  margin: 80px 0;
+  padding: 10px 0;
+  background-color: var(--input-bg-color);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.21;
+  cursor: pointer;
 }
