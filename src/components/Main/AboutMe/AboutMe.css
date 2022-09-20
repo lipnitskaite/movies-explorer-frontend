@@ -3,11 +3,6 @@
   padding: 70px 14px;
 }
 
-.about-me__container {
-  display: flex;
-  flex-direction: column;
-}
-
 .about-me__title {
   margin: 0;
   margin-bottom: 60px;
@@ -18,6 +13,11 @@
   font-size: 18px;
   line-height: 1.21;
   letter-spacing: -.04em;
+}
+
+.about-me__container {
+  display: flex;
+  flex-direction: column;
 }
 
 .about-me__picture {
@@ -32,7 +32,7 @@
   padding: 0;
   font-weight: 400;
   font-size: 30px;
-  line-height: 1,21;
+  line-height: 1.21;
   letter-spacing: -.04em;
 }
 
@@ -42,7 +42,7 @@
   padding: 0;
   font-weight: 400;
   font-size: 11px;
-  line-height: 16px;
+  line-height: 1.45;
 }
 
 .about-me__text_type_bold {
@@ -67,4 +67,57 @@
   text-decoration: none;
   color: var(--main-text-color);
   cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.21;
+}
+
+@media screen and (min-width: 768px) {
+  .about-me {
+    padding: 90px 50px;
+  }
+
+  .about-me__title {
+    margin-bottom: 66px;
+    padding-bottom: 23px;
+    border-bottom: 1px solid var(--title-border-color);
+    font-size: 22px;
+  }
+
+  .about-me__picture {
+    width: 255px;
+  }
+  
+
+  .about-me__container {
+    flex-direction: row-reverse;
+  }
+
+  .about-me__info-container {
+    margin-right: 49px;
+  }
+
+  .about-me__picture {
+    margin-bottom: 0;
+  }
+  
+  .about-me__subtitle {
+    margin-bottom: 16px;
+    font-size: 40px;
+    line-height: 1;
+  }
+  
+  .about-me__text {
+    margin-bottom: 84px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  
+  .about-me__text_type_bold {
+    margin-bottom: 23px;
+  }
+  
+  .about-me__list-item {
+    margin-right: 20px;
+  }
 }
