@@ -34,7 +34,7 @@
 .header__link {
   font-size: 10px;
   font-weight: 500;
-  line-height: 1,6;
+  line-height: 1.6;
   text-decoration: none;
   color: var(--main-text-color);
 }
@@ -58,4 +58,25 @@
 
 .header__menu-button_disabled {
   display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    height: 74px;
+    padding: 18px 30px;
+  }
+
+  .header__link {
+    font-size: 12px;
+    line-height: 1.3;
+  }
+
+  .header__nav_item {
+    margin-right: 30px;
+  }
+
+  .header__link_type_button {
+    padding: 8px 20px;
+    border-radius: 3px;
+  }  
 }
