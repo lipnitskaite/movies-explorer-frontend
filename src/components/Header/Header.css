@@ -78,5 +78,11 @@
   .header__link_type_button {
     padding: 8px 20px;
     border-radius: 3px;
-  }  
+  }
+
+  .header__menu-button {
+    width: 44px;
+    height: 44px;
+    background-size: 44px 44px;
+  }
 }
