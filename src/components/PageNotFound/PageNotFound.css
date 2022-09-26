@@ -56,3 +56,9 @@
     bottom: 22%;
   }
 }
+
+@media screen and (min-width: 1280px) {
+  .not-found__link {
+    bottom: 8.5%;
+  }
+}
