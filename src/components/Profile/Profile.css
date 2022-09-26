@@ -81,3 +81,28 @@
   color: var(--warning-text-color);
   padding: 8px 0 0 0;
 }
+
+@media screen and (min-width: 768px) {
+  .profile {
+    height: calc(100vh - 74px);
+    padding: 236px 0 269px 0;
+  }
+  
+  .profile__title {
+    margin-bottom: 96px;
+    max-width: 410px;
+  }
+  
+  .profile__container {
+    max-width: 410px;
+  }
+  
+  .profile__container_type_profile-info {
+    padding: 0;
+    grid-template-columns: 130px auto;
+  }
+  
+  .profile__button {
+    font-size: 13px;
+  }
+}
