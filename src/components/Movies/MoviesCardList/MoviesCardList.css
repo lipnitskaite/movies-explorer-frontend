@@ -1,13 +1,17 @@
 .movies {
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 50px 0 80px 0;
   margin: 0 10px;
-  width: calc(100% - 20px);
+  width: calc(100% - 2 * 10px);
   border-top: 1px solid #424242;
+}
+
+.movies__container {
+  width: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
 }
 
 .movies__button {
@@ -28,4 +32,22 @@
 
 .movies__button_disabled {
   display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .movies {
+    padding: 80px 0;
+    margin: 0 30px;
+    width: calc(100% - 2 * 30px);
+  }
+
+  .movies__container {
+    gap: 36px 30px;
+    grid-template-columns: repeat(auto-fit, minmax(339px, 1fr));
+  }
+  
+  .movies__button {
+    width: 100%;
+    max-width: 708px;
+  }
 }

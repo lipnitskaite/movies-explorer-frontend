@@ -1,7 +1,7 @@
 .movie-card {
   box-sizing: border-box;
   width: 100%;
-  max-width: 339px;
+  max-width: 300px;
   margin: 0 auto;
   padding: 0 12px 14px 12px;
   display: flex;
@@ -72,6 +72,8 @@
   color: var(--dark-grey-text-color);
 }
 
-.movies__cards {
-  margin-bottom: 20px;
+@media screen and (min-width: 768px) {
+  .movie-card {
+    max-width: 339px;
+  }
 }

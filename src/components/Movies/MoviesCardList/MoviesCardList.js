@@ -8,9 +8,11 @@ function MoviesCardList(props) {
   const savedCard = props.isSavedList;
   return (
     <section className='movies'>
-      <MoviesCard 
-        isSavedCard={savedCard}
-      />
+      <div className='movies__container'>
+        <MoviesCard 
+          isSavedCard={savedCard}
+        />
+      </div>
       <button className={props.isSavedList ? 'movies__button movies__button_disabled' : 'movies__button'}>Ещё</button>
     </section>
   );
