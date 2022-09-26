@@ -7,11 +7,13 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 function SearchForm() {
   return (
     <section className='search-form'>
-      <form className='search-form__container'>
-        <input className='search-form__input' placeholder='Фильм' type='search' required></input>
-        <button className='search-form__button' type='submit'></button>
-      </form>
-      <FilterCheckbox />
+      <div className='search-form__container'>
+        <form className='search-form__form'>
+          <input className='search-form__input' placeholder='Фильм' type='search' required></input>
+          <button className='search-form__button' type='submit'></button>
+        </form>
+        <FilterCheckbox />
+      </div>
     </section>
   );
 }
