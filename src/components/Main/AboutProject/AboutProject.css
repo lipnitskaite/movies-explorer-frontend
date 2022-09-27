@@ -129,3 +129,30 @@
     line-height: 1.21;
   }
 }
+
+@media screen and (min-width: 1280px) {
+  .about-project {
+    padding: 110px 70px;
+  }
+
+  .about-project__info-container {
+    margin-bottom: 110px;
+  }
+
+  .about-project__info-item {
+    margin-right: 40px;
+  }
+  
+  .about-project__subtitle {
+    margin-bottom: 26px;
+  }
+  
+  .about-project__text {
+    font-size: 14px;
+    line-height: 1.43;
+  }
+  
+  .about-project__table {
+    grid-template-columns: 228px auto;
+  }
+}
