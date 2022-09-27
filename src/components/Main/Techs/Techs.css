@@ -102,3 +102,28 @@
     margin-right: 0;
   }
 }
+
+@media screen and (min-width: 1280px) {
+  .techs {
+    padding: 100px 70px;
+  }
+
+  .techs__title {
+    margin-bottom: 90px;
+  }
+
+  .techs__subtitle {
+    margin-bottom: 26px;
+  }
+  
+  .techs__text {
+    margin-bottom: 100px;
+    font-size: 14px;
+    line-height: 1.43;
+  }
+
+  .techs__table-item {
+    width: 90px;
+    font-size: 14px;
+  }
+}
