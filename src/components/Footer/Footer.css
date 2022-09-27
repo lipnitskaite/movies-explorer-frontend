@@ -82,3 +82,9 @@
     line-height: 1.21;
   }
 }
+
+@media screen and (min-width: 1280px) {
+  .footer {
+    padding: 79px 70px 20px 70px;
+  }
+}
