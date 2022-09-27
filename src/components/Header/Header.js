@@ -28,6 +28,7 @@ function Header(props) {
         onClick={openNavigationPopup}
       ></button>
       <Navigation
+        isLoggedIn={props.isLoggedIn}
         isOpen={isNavigationPopupOpen}
         onClose={closeNavigationPopup}
       />

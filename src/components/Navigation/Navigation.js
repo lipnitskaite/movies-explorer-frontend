@@ -3,9 +3,9 @@ import'../Navigation/Navigation.css';
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
         
-function Navigation({ isOpen, onClose }) {
+function Navigation({ isLoggedIn, isOpen, onClose }) {
   return (
-    <section className={`menu ${isOpen && 'menu_opened'}`}>
+    <section className={isLoggedIn ? `menu ${isOpen && 'menu_opened'}` : 'menu menu_disabled'}>
       <div className="menu__overlay" onClick={onClose}></div>
       <div className='menu__container'>
         <button 
@@ -17,7 +17,7 @@ function Navigation({ isOpen, onClose }) {
           <ul className='menu__nav-list'>
             <li className='menu__nav-item'>
               <NavLink 
-                className='menu__link menu__link_type_nav'
+                className='menu__link menu__link_type_nav menu__link_type_main'
                 to='/'
                 exact={true}
                 onClick={onClose}
@@ -27,7 +27,7 @@ function Navigation({ isOpen, onClose }) {
             </li>
             <li className='menu__nav-item'>
               <NavLink
-                className='menu__link menu__link_type_nav'
+                className='menu__link menu__link_type_nav menu__link_type_bold'
                 to='/movies'
                 onClick={onClose}
               >
@@ -46,7 +46,7 @@ function Navigation({ isOpen, onClose }) {
           </ul>  
         </nav>
         <Link
-          className='menu__link menu__link_type_main'
+          className='menu__link menu__link_type_profile'
           to={'/profile'}
           onClick={onClose}
         >
