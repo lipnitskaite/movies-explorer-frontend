@@ -87,7 +87,6 @@
   .about-me__picture {
     width: 255px;
   }
-  
 
   .about-me__container {
     flex-direction: row-reverse;
@@ -119,5 +118,37 @@
   
   .about-me__list-item {
     margin-right: 20px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .about-me {
+    padding: 110px 70px 125px 70px;
+  }
+
+  .about-me__picture {
+    width: 270px;
+  }
+
+  .about-me__info-container {
+    margin-right: 270px;
+  }
+  
+  .about-me__subtitle {
+    margin-bottom: 18px;
+    font-size: 50px;
+    line-height: 1.16;
+  }
+  
+  .about-me__text {
+    margin-bottom: 99px;
+    font-size: 14px;
+    line-height: 1.57;
+  }
+  
+  .about-me__text_type_bold {
+    font-size: 18px;
+    line-height: 1.11;
+    margin-bottom: 26px;
   }
 }
