@@ -87,4 +87,12 @@
   .footer {
     padding: 79px 70px 20px 70px;
   }
+
+  .footer__link {
+    transition: opacity .3s ease-in-out;
+  }
+
+  .footer__link:hover {
+    opacity: 70%;
+  }
 }

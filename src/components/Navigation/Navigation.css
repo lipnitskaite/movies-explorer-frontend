@@ -162,7 +162,23 @@
   .menu__nav-item:last-of-type {
     margin-right: 50px;
   }
-  
+
+  .menu__link {
+    transition: opacity .3s ease-in-out;
+  }
+
+  .menu__link:hover {
+    opacity: 70%;
+  }
+
+  .menu__link_type_profile {
+    transition: opacity .3s ease-in-out;
+  }
+
+  .menu__link_type_profile:hover {
+    opacity: 80%;
+  }
+
   .menu__link_type_nav {
     font-weight: 400;
     font-size: 14px;

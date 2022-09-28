@@ -95,4 +95,20 @@
   .header__menu-button {
     display: none;
   }
+
+  .header__link {
+    transition: opacity .3s ease-in-out;
+  }
+
+  .header__link:hover {
+    opacity: 70%;
+  }
+
+  .header__link_type_button {
+    transition: opacity .3s ease-in-out;
+  }
+
+  .header__link_type_button:hover {
+    opacity: 80%;
+  }
 }

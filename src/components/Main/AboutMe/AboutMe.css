@@ -151,4 +151,12 @@
     line-height: 1.11;
     margin-bottom: 26px;
   }
+
+  .about-me__link {
+    transition: opacity .3s ease-in-out;
+  }
+
+  .about-me__link:hover {
+    opacity: 70%;
+  }
 }
