@@ -66,3 +66,30 @@
     width: 18px;
   }
 }
+
+@media screen and (min-width: 1280px) {
+  .portfolio {
+    padding: 0 70px 125px 70px;
+  }
+
+  .portfolio__title {
+    margin-bottom: 54px;
+  }
+
+  .portfolio__link {
+    transition: opacity .3s ease-in-out;
+  }
+
+  .portfolio__link:hover {
+    opacity: 70%;
+  }
+
+  .portfolio__link-title {
+    font-size: 30px;
+    line-height: 1.67;
+  }
+
+  .portfolio__link-arrow {
+    width: 20px;
+  }
+}
