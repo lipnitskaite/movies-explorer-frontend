@@ -82,4 +82,12 @@
   .movie-card {
     max-width: 270px;
   }
+
+  .movie-card__button {
+    transition: opacity .3s ease-in-out;
+  }
+
+  .movie-card__button:hover {
+    opacity: 80%;
+  }
 }
