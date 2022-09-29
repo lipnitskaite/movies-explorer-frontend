@@ -27,7 +27,7 @@ function Navigation({ isLoggedIn, isOpen, onClose }) {
             </li>
             <li className='menu__nav-item'>
               <NavLink
-                className='menu__link menu__link_type_nav menu__link_type_bold'
+                className='menu__link menu__link_type_nav'
                 to='/movies'
                 onClick={onClose}
               >

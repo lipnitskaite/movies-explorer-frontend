@@ -24,6 +24,8 @@
   border-radius: 10px;
   margin: 0 auto;
   margin-bottom: 40px;
+  width: 100%;
+  max-width: 292px;
 }
 
 .about-me__subtitle {

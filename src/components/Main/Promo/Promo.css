@@ -26,6 +26,7 @@
 .promo__image {
   box-sizing: border-box;
   width: 100%;
+  max-width: 680px;
   height: 230px;
   background-image: url(../../../images/promo_image.svg);
   background-repeat: no-repeat;

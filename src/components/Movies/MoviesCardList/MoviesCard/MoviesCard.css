@@ -1,8 +1,9 @@
 .movie-card {
   box-sizing: border-box;
-  width: 100%;
+  width: 93,8%;
   max-width: 300px;
   margin: 0 auto;
+  margin-bottom: 20px;
   padding: 0 12px 14px 12px;
   display: flex;
   flex-direction: column;
@@ -14,6 +15,7 @@
 
 .movie-card__image {
   margin: 0 -12px 14px -12px;
+  height: 192px;
 }
 
 .movie-card__container {
@@ -75,12 +77,17 @@
 @media screen and (min-width: 768px) {
   .movie-card {
     max-width: 339px;
+    margin-bottom: 0;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .movie-card {
     max-width: 270px;
+  }
+
+  .movie-card__image {
+    height: 151px;
   }
 
   .movie-card__button {
