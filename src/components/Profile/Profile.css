@@ -85,7 +85,7 @@
 @media screen and (min-width: 768px) {
   .profile {
     height: calc(100vh - 74px);
-    padding: 236px 0 269px 0;
+    padding: 23vh 0 26vh 0;
   }
   
   .profile__title {
@@ -104,5 +104,29 @@
   
   .profile__button {
     font-size: 13px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .profile {
+    height: calc(100vh - 74px);
+    padding: 11vh 0 10vh 0;
+  }
+  
+  .profile__title {
+    margin-bottom: 123px;
+  }
+  
+  .profile__container_type_profile-info {
+    padding: 0;
+    grid-template-columns: 141px auto;
+  }
+
+  .profile__button {
+    transition: opacity .3s ease-in-out;
+  }
+
+  .profile__button:hover {
+    opacity: 80%;
   }
 }
