@@ -2,7 +2,7 @@ import '../MoviesCard/MoviesCard.css';
 
 import React from 'react';
 
-import movieImage from '../../../../images/pic__COLOR_pic.svg';
+import movieImage from '../../../../images/pic__COLOR_pic.png';
 
 function MoviesCard(props) {
   return (

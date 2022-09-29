@@ -2,7 +2,7 @@ import './AboutMe.css';
 
 import React from 'react';
 
-import studentPicture from '../../../images/student_pic.svg';
+import studentPicture from '../../../images/student_pic.png';
 
 function AboutMe() {
   return (
