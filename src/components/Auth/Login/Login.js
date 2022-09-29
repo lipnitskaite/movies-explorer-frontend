@@ -8,10 +8,10 @@ import Logo from '../../Logo/Logo';
 function Register() {
   return (
     <section className='auth'>
-      <Link className='auth__logo-link' to={'/'}>
-        <Logo />
-      </Link>
       <form className='form'>
+        <Link className='auth__logo-link' to={'/'}>
+          <Logo />
+        </Link>
         <h2 className='form__title'>Рады видеть!</h2>
         <fieldset className='form__container'>
           <label className='form__label' for='email'>E-mail</label>
