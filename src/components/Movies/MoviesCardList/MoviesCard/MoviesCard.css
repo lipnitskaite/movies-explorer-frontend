@@ -15,7 +15,7 @@
 
 .movie-card__image {
   margin: 0 -12px 14px -12px;
-  height: 192px;
+  height: 168px;
 }
 
 .movie-card__container {
@@ -78,6 +78,10 @@
   .movie-card {
     max-width: 339px;
     margin-bottom: 0;
+  }
+
+  .movie-card__image {
+    height: 190px;
   }
 }
 

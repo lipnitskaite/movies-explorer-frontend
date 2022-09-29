@@ -67,7 +67,7 @@
 }
 
 .form__input:focus {
-  outline: 1px solid var(--blue-button-bg-color);
+  outline: none;
 }
 
 .form__input::placeholder {
