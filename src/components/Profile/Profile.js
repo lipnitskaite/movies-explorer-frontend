@@ -13,8 +13,8 @@ function Profile() {
         <p className='profile__text'>pochta@yandex.ru</p>
       </div>
       <div className='profile__container profile__container_type_buttons'>
-        <button className='profile__button profile__button_type_edit'>Редактировать</button>
-        <button className='profile__button profile__button_type_signout'>Выйти из аккаунта</button>
+        <button className='profile__button profile__button_type_edit' type='button'>Редактировать</button>
+        <button className='profile__button profile__button_type_signout' type='button'>Выйти из аккаунта</button>
       </div>
     </section>
   );

@@ -13,7 +13,10 @@ function MoviesCardList(props) {
           isSavedCard={savedCard}
         />
       </div>
-      <button className={props.isSavedList ? 'movies__button movies__button_disabled' : 'movies__button'}>Ещё</button>
+      <button
+        className={props.isSavedList ? 'movies__button movies__button_disabled' : 'movies__button'}
+        type='button'
+      >Ещё</button>
     </section>
   );
 }

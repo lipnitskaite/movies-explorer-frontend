@@ -34,6 +34,19 @@
   outline: none;
 }
 
+.search-form__input::-ms-clear {
+  display: none; width : 0; height: 0;
+}
+
+.search-form__input::-ms-reveal {
+  display: none; width : 0; height: 0;
+}
+
+.search-form__input::-webkit-search-decoration { display: none; }
+.search-form__input::-webkit-search-cancel-button { display: none; }
+.search-form__input::-webkit-search-results-button { display: none; }
+.search-form__input::-webkit-search-results-decoration { display: none; }
+
 .search-form__input::placeholder {
   color: var(--dark-grey-text-color);
   font-weight: 400;

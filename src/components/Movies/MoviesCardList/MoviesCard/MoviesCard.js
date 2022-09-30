@@ -12,7 +12,7 @@ function MoviesCard(props) {
         <div className='movie-card__container'>
           <h4 className='movie-card__title'>33 слова о дизайне</h4>
           <input className={props.isSavedCard ? 'movie-card__toggle movie-card__toggle_disabled' : 'movie-card__toggle'} type='checkbox'></input>
-          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'}></button>
+          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'} type='button'></button>
         </div>
         <p className='movie-card__text'>1ч42м</p>
       </article>
@@ -21,7 +21,7 @@ function MoviesCard(props) {
         <div className='movie-card__container'>
           <h4 className='movie-card__title'>33 слова о дизайне</h4>
           <input className={props.isSavedCard ? 'movie-card__toggle movie-card__toggle_disabled' : 'movie-card__toggle'} type='checkbox'></input>
-          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'}></button>
+          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'} type='button'></button>
         </div>
         <p className='movie-card__text'>1ч42м</p>
       </article>
@@ -30,7 +30,7 @@ function MoviesCard(props) {
         <div className='movie-card__container'>
           <h4 className='movie-card__title'>33 слова о дизайне</h4>
           <input className={props.isSavedCard ? 'movie-card__toggle movie-card__toggle_disabled' : 'movie-card__toggle'} type='checkbox'></input>
-          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'}></button>
+          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'} type='button'></button>
         </div>
         <p className='movie-card__text'>1ч42м</p>
       </article>
@@ -39,7 +39,7 @@ function MoviesCard(props) {
         <div className='movie-card__container'>
           <h4 className='movie-card__title'>33 слова о дизайне</h4>
           <input className={props.isSavedCard ? 'movie-card__toggle movie-card__toggle_disabled' : 'movie-card__toggle'} type='checkbox'></input>
-          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'}></button>
+          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'} type='button'></button>
         </div>
         <p className='movie-card__text'>1ч42м</p>
       </article>
@@ -48,7 +48,7 @@ function MoviesCard(props) {
         <div className='movie-card__container'>
           <h4 className='movie-card__title'>33 слова о дизайне</h4>
           <input className={props.isSavedCard ? 'movie-card__toggle movie-card__toggle_disabled' : 'movie-card__toggle'} type='checkbox'></input>
-          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'}></button>
+          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'} type='button'></button>
         </div>
         <p className='movie-card__text'>1ч42м</p>
       </article>
@@ -57,7 +57,7 @@ function MoviesCard(props) {
         <div className='movie-card__container'>
           <h4 className='movie-card__title'>33 слова о дизайне</h4>
           <input className={props.isSavedCard ? 'movie-card__toggle movie-card__toggle_disabled' : 'movie-card__toggle'} type='checkbox'></input>
-          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'}></button>
+          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'} type='button'></button>
         </div>
         <p className='movie-card__text'>1ч42м</p>
       </article>
@@ -66,7 +66,7 @@ function MoviesCard(props) {
         <div className='movie-card__container'>
           <h4 className='movie-card__title'>33 слова о дизайне</h4>
           <input className={props.isSavedCard ? 'movie-card__toggle movie-card__toggle_disabled' : 'movie-card__toggle'} type='checkbox'></input>
-          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'}></button>
+          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'} type='button'></button>
         </div>
         <p className='movie-card__text'>1ч42м</p>
       </article>
@@ -75,7 +75,7 @@ function MoviesCard(props) {
         <div className='movie-card__container'>
           <h4 className='movie-card__title'>33 слова о дизайне</h4>
           <input className={props.isSavedCard ? 'movie-card__toggle movie-card__toggle_disabled' : 'movie-card__toggle'} type='checkbox'></input>
-          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'}></button>
+          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'} type='button'></button>
         </div>
         <p className='movie-card__text'>1ч42м</p>
       </article>
@@ -84,7 +84,7 @@ function MoviesCard(props) {
         <div className='movie-card__container'>
           <h4 className='movie-card__title'>33 слова о дизайне</h4>
           <input className={props.isSavedCard ? 'movie-card__toggle movie-card__toggle_disabled' : 'movie-card__toggle'} type='checkbox'></input>
-          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'}></button>
+          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'} type='button'></button>
         </div>
         <p className='movie-card__text'>1ч42м</p>
       </article>
@@ -93,7 +93,7 @@ function MoviesCard(props) {
         <div className='movie-card__container'>
           <h4 className='movie-card__title'>33 слова о дизайне</h4>
           <input className={props.isSavedCard ? 'movie-card__toggle movie-card__toggle_disabled' : 'movie-card__toggle'} type='checkbox'></input>
-          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'}></button>
+          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'} type='button'></button>
         </div>
         <p className='movie-card__text'>1ч42м</p>
       </article>

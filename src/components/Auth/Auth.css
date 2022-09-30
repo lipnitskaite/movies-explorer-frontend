@@ -148,6 +148,10 @@
     margin-bottom: 40px;
     text-align: start;
   }
+
+  .form__container {
+    min-height: 323px;
+  }
   
   .form__button {
     margin-bottom: 16px;
