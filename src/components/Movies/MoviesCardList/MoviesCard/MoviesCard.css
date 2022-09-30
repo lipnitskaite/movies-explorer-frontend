@@ -1,0 +1,104 @@
+.movie-card {
+  box-sizing: border-box;
+  width: 93,8%;
+  max-width: 300px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 0 12px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--dark-grey-bg-color);
+  box-shadow: 0px 16px 24px rgba(0, 0, 0, .05);
+  border-radius: 10px;
+}
+
+.movie-card__image {
+  margin: 0 -12px 14px -12px;
+  height: 168px;
+}
+
+.movie-card__container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.movie-card__title {
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.21;
+}
+
+.movie-card__toggle {
+  -webkit-appearance: none;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  border-radius: 50%;
+  border: 2px solid white;
+  transition: background-color .3s;
+}
+
+.movie-card__toggle:checked {
+  background-color: var(--checkbox-enabled-bg-color);
+}
+
+.movie-card__toggle_disabled {
+  display: none;
+}
+
+.movie-card__button {
+  box-sizing: border-box;
+  background: url('../../../../images/card_delete-button.svg') no-repeat center;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  width: 8px;
+  border: none;
+}
+
+.movie-card__button_disabled {
+  display: none;
+}
+
+.movie-card__text {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 1.21;
+  color: var(--dark-grey-text-color);
+}
+
+@media screen and (min-width: 768px) {
+  .movie-card {
+    max-width: 339px;
+    margin-bottom: 0;
+  }
+
+  .movie-card__image {
+    height: 190px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .movie-card {
+    max-width: 270px;
+  }
+
+  .movie-card__image {
+    height: 151px;
+  }
+
+  .movie-card__button {
+    transition: opacity .3s ease-in-out;
+  }
+
+  .movie-card__button:hover {
+    opacity: 80%;
+  }
+}

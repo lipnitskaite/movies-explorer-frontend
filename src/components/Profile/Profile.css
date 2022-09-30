@@ -1,0 +1,132 @@
+.profile {
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(100vh - 74px);
+  padding: 70px 10px 40px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile__title {
+  margin: 0;
+  margin-bottom: 80px;
+  padding: 0;
+  width: 100%;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.21;
+  text-align: center;
+}
+
+.profile__container {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.profile__container_type_profile-info {
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 130px auto;
+}
+
+.profile__container_type_buttons {
+  margin-top: auto;
+}
+
+.profile__category {
+  margin: 0;
+  padding: 16px 0;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1.21;
+  border-bottom: 1px solid #424242;
+}
+
+.profile__category:last-of-type {
+  border-bottom: none;
+}
+
+.profile__text {
+  margin: 0;
+  padding: 16px 0;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 1.21;
+  text-align: end;
+  border-bottom: 1px solid #424242;
+}
+
+.profile__text:last-of-type {
+  border-bottom: none;
+}
+
+.profile__button {
+  margin: 0;
+  padding: 8px 0;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.21;
+  cursor: pointer;
+}
+
+.profile__button_type_edit {
+  color: var(--main-text-color);
+}
+
+.profile__button_type_signout {
+  color: var(--warning-text-color);
+  padding: 8px 0 0 0;
+}
+
+@media screen and (min-width: 768px) {
+  .profile {
+    height: calc(100vh - 74px);
+    padding: 23vh 0 26vh 0;
+  }
+  
+  .profile__title {
+    margin-bottom: 96px;
+    max-width: 410px;
+  }
+  
+  .profile__container {
+    max-width: 410px;
+  }
+  
+  .profile__container_type_profile-info {
+    padding: 0;
+    grid-template-columns: 130px auto;
+  }
+  
+  .profile__button {
+    font-size: 13px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .profile {
+    height: calc(100vh - 74px);
+    padding: 11vh 0 10vh 0;
+  }
+  
+  .profile__title {
+    margin-bottom: 123px;
+  }
+  
+  .profile__container_type_profile-info {
+    padding: 0;
+    grid-template-columns: 141px auto;
+  }
+
+  .profile__button {
+    transition: opacity .3s ease-in-out;
+  }
+
+  .profile__button:hover {
+    opacity: 80%;
+  }
+}

@@ -1,0 +1,19 @@
+.app {
+  --main-bg-color: #202020;
+  --secondary-bg-color: #073042;
+  --grey-bg-color: #303030;
+  --dark-grey-bg-color: #222222;
+  --green-button-bg-color: #3DDC84;
+  --blue-button-bg-color: #4285F4;
+  --main-text-color: #FFFFFF;
+  --dark-grey-text-color: #8B8B8B;
+  --light-grey-color: #A0A0A0;
+  --light-btn-text-color: #000000;
+  --link-text-color: #4285F4;
+  --warning-text-color: #EE3465;
+  --light-grey-border-color: #E6E6E6;
+  --input-bg-color: #2F2F2F;
+  --checkbox-disabled-bg-color: #343434;
+  --checkbox-enabled-bg-color: #2BE080;
+  --title-border-color: #DADADA;
+}
