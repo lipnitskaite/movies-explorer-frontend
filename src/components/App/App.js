@@ -2,7 +2,8 @@ import React from 'react';
 
 import '../App/App.css';
 
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, useHistory } from 'react-router-dom';
+import { mainApi } from '../../utils/constants';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -14,6 +15,18 @@ import Profile from '../Profile/Profile';
 import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
+  const history = useHistory();
+
+  function handleRegister(name, email, password) {
+    return mainApi.register(name, email, password)
+    .then(() => {
+      history.push('/movies');
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
   return (
     <BrowserRouter>
       <div className="app">
@@ -26,7 +39,7 @@ function App() {
             <Footer />
           </Route>
           <Route path='/signup'>
-            <Register />
+            <Register handleRegister={handleRegister}/>
           </Route>
           <Route path='/signin'>
             <Login />
