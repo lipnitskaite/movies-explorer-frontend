@@ -5,16 +5,17 @@ import UseFormValidation from '../../Validation/Validation';
 import { Link } from 'react-router-dom';
 import Logo from '../../Logo/Logo';
 
-function Register({ handleRegister }) {
+function Register({ handleRegister, submitError, setSubmitError }) {
   const { values, handleChange, errors, isValid, resetForm } = UseFormValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
 
     handleRegister(values)
-    .catch((err) => console.log(err))
+    .catch((err) => {
+      setSubmitError(err);
+    })
   }
-
   return (
     <section className='auth'>
       <form className='form' name='user-register' noValidate onSubmit={handleSubmit}>
@@ -62,6 +63,7 @@ function Register({ handleRegister }) {
           ></input>
           <span className={`form__input-error ${errors.password && 'form__input-error_active'}`}>{errors.password || ''}</span>
         </fieldset>
+        <span className={`form__submit-error ${submitError && 'form__submit-error_active'}`}>{submitError || ''}</span>
         <button 
           className={`form__button ${!isValid && 'form__button_disabled'}`}
           type='submit'

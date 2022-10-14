@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import '../App/App.css';
 
@@ -16,6 +16,7 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
   const history = useHistory();
+  const [submitError, setSubmitError] = useState([]);
 
   function handleRegister(name, email, password) {
     return mainApi.register(name, email, password)
@@ -23,7 +24,7 @@ function App() {
       history.push('/movies');
     })
     .catch((err) => {
-      console.log(err);
+      setSubmitError(err);
     })
   }
 
@@ -39,7 +40,11 @@ function App() {
             <Footer />
           </Route>
           <Route path='/signup'>
-            <Register handleRegister={handleRegister}/>
+            <Register 
+            handleRegister={handleRegister}
+            submitError={submitError}
+            setSubmitError={setSubmitError}
+            />
           </Route>
           <Route path='/signin'>
             <Login />
