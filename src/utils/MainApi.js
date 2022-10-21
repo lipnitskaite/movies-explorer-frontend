@@ -1,33 +1,22 @@
 export default class MainApi {
-  constructor({ address, headers, notAuthorizedHandler }) {
+  constructor({ address, headers }) {
     this._address = address;
     this._headers = headers;
-    this._notAuthorizedHandler = notAuthorizedHandler;
   }
 
   _handleResponse = (res) => {
-    if (res.status === 401) {
-      this._notAuthorizedHandler();
+    switch (res.status) {
+      case 200:
+        return res.json();
+      case 401:
+        return Promise.reject('Неправильные почта или пароль.');
+      case 409:
+        return Promise.reject('Пользователь с такой почтой уже зарегистрирован.');
+      default:
+        console.log(res.status);
+        return Promise.reject('Что-то пошло не так.');
     }
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
   };
-
-  // const checkResponse = (response) => {
-  //   if (response.ok) {
-  //     return response.json();
-  //   }
-  //   return response.json()
-  //   .then((data) => {
-  //     const { statusCode } = data;
-  //     const { message } = data.message;
-  //     const error = new Error(message || 'Что-то пошло не так');
-  //     error.status = statusCode;
-  //     throw error;
-  //   })
-  // }
   
   register(name, email, password) {
     return fetch(`${this._address}/signup`, {

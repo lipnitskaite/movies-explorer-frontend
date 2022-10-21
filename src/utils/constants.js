@@ -4,7 +4,6 @@ import MoviesApi from '../utils/MoviesApi';
 const mainApi = new MainApi({
   address: 'https://api.movies.lipnitskaite.nomoredomains.sbs',
   headers: { 'Content-Type': 'application/json' },
-  notAuthorizedHandler: function() { console.log('Пожалуйста, авторизируйтесь.') }
 });
 
 const moviesApi = new MoviesApi({

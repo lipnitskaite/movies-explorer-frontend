@@ -18,7 +18,7 @@ function App() {
   const history = useHistory();
   const [submitError, setSubmitError] = useState([]);
 
-  function handleRegister(name, email, password) {
+  function handleRegister({ name, email, password }) {
     return mainApi.register(name, email, password)
     .then(() => {
       history.push('/movies');
