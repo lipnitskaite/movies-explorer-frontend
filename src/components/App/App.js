@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import '../App/App.css';
 
-import { BrowserRouter, Switch, Route, useHistory } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import { mainApi } from '../../utils/constants';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -27,54 +27,51 @@ function App() {
       setSubmitError(err);
     })
   }
-
   return (
-    <BrowserRouter>
-      <div className="app">
-        <Switch>
-          <Route exact path='/'>
-            <Header
-              isLoggedIn={false}
-            />
-            <Main />
-            <Footer />
-          </Route>
-          <Route path='/signup'>
-            <Register 
-            handleRegister={handleRegister}
-            submitError={submitError}
-            setSubmitError={setSubmitError}
-            />
-          </Route>
-          <Route path='/signin'>
-            <Login />
-          </Route>
-          <Route path='/movies'>
-            <Header
-              isLoggedIn={true}
-            />
-            <Movies />
-            <Footer />
-          </Route>
-          <Route path='/saved-movies'>
-            <Header
-              isLoggedIn={true}
-            />
-            <SavedMovies />
-            <Footer />
-          </Route>
-          <Route path='/profile'>
-            <Header
-              isLoggedIn={true}
-            />
-            <Profile />
-          </Route>
-          <Route path='*'>
-            <PageNotFound />
-          </Route>
-        </Switch>
-      </div>
-    </BrowserRouter>
+    <div className="app">
+      <Switch>
+        <Route exact path='/'>
+          <Header
+            isLoggedIn={false}
+          />
+          <Main />
+          <Footer />
+        </Route>
+        <Route path='/signup'>
+          <Register 
+          handleRegister={handleRegister}
+          submitError={submitError}
+          setSubmitError={setSubmitError}
+          />
+        </Route>
+        <Route path='/signin'>
+          <Login />
+        </Route>
+        <Route path='/movies'>
+          <Header
+            isLoggedIn={true}
+          />
+          <Movies />
+          <Footer />
+        </Route>
+        <Route path='/saved-movies'>
+          <Header
+            isLoggedIn={true}
+          />
+          <SavedMovies />
+          <Footer />
+        </Route>
+        <Route path='/profile'>
+          <Header
+            isLoggedIn={true}
+          />
+          <Profile />
+        </Route>
+        <Route path='*'>
+          <PageNotFound />
+        </Route>
+      </Switch>
+    </div>
   );
 }
 
