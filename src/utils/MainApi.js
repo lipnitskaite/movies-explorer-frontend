@@ -31,6 +31,19 @@ export default class MainApi {
     .then(this._handleResponse)
   };
 
+  authorize(email, password) {
+    return fetch(`${this._address}/signin`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email, password })
+    })
+    .then(this._handleResponse)
+  };
+
   getMovies() {
     return fetch(`${this._address}/movies`, {
       method: 'GET',

@@ -27,6 +27,16 @@ function App() {
       setSubmitError(err);
     })
   }
+
+  function handleLogin({ email, password }) {
+    return mainApi.authorize(email, password)
+    .then(() => {
+      history.push('/movies');
+    })
+    .catch((err) => {
+      setSubmitError(err);
+    })
+  }
   return (
     <div className="app">
       <Switch>
@@ -45,7 +55,11 @@ function App() {
           />
         </Route>
         <Route path='/signin'>
-          <Login />
+          <Login
+            handleLogin={handleLogin}
+            submitError={submitError}
+            setSubmitError={setSubmitError}
+          />
         </Route>
         <Route path='/movies'>
           <Header
