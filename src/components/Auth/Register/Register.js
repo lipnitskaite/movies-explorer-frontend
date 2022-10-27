@@ -15,6 +15,8 @@ function Register({ handleRegister, submitError, setSubmitError }) {
     .catch((err) => {
       setSubmitError(err);
     })
+
+    resetForm();
   }
   return (
     <section className='auth'>

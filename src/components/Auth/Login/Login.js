@@ -15,6 +15,8 @@ function Login({ handleLogin, submitError, setSubmitError }) {
     .catch((err) => {
       setSubmitError(err);
     })
+
+    resetForm();
   }
 
   return (
