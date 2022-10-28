@@ -43,7 +43,7 @@
 
   .movies__container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(339px, 1fr));
+    grid-template-columns: repeat(2, minmax(339px, 1fr));
     gap: 36px 30px;
   }
   
