@@ -1,29 +1,31 @@
 import React, { useState, useEffect } from 'react';
 
-import MoviesApi from '../../utils/MoviesApi';
+import { moviesApi } from '../../utils/constants';
 import SearchForm from '../SearchForm/SearchForm';
+import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 
 function Movies() {
-  const moviesApi = new MoviesApi({
-    address: 'https://api.nomoreparties.co/beatfilm-movies',
-    headers: { 'Content-Type': 'application/json' },
-  });
-
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     moviesApi.getMovies()
       .then((movies) => {
         setMovies(movies);
+        setIsLoading(false);
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err)); //обработать ошибку
   }, [])
 
   return (
     <main className="content">
       <SearchForm />
-      <MoviesCardList 
+      <Preloader 
+        isLoading={isLoading}
+      />
+      <MoviesCardList
+        isLoading={isLoading}
         movies={movies}
       />
     </main>

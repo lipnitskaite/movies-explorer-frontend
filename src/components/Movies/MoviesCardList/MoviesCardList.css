@@ -10,6 +10,10 @@
   justify-content: center;
 }
 
+.movies_hidden {
+  display: none;
+}
+
 .movies__container {
   width: 100%;
   box-sizing: border-box;

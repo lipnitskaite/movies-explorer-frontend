@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 import MoviesCard from '../MoviesCardList/MoviesCard/MoviesCard';
 
-function MoviesCardList({ movies, isSavedList}) {
+function MoviesCardList({ isLoading, movies, isSavedList}) {
   const savedCard = isSavedList;
   const width = window.innerWidth;
   let initialImagePerRow;
@@ -28,7 +28,7 @@ function MoviesCardList({ movies, isSavedList}) {
   }
 
   return (
-    <section className='movies'>
+    <section className={isLoading ? 'movies movies_hidden' : 'movies'}>
       <div className='movies__container'>
         {movies?.slice(0, row)?.map((card) => (
           <MoviesCard
