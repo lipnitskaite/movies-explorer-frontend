@@ -12,10 +12,7 @@ function Register({ handleRegister, submitError, setSubmitError }) {
     e.preventDefault();
 
     handleRegister(values)
-    .catch((err) => {
-      setSubmitError(err);
-    })
-
+    .catch(err => setSubmitError(err))
     resetForm();
   }
   return (

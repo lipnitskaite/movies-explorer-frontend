@@ -20,22 +20,14 @@ function App() {
 
   function handleRegister({ name, email, password }) {
     return mainApi.register(name, email, password)
-    .then(() => {
-      history.push('/movies');
-    })
-    .catch((err) => {
-      setSubmitError(err);
-    })
+    .then(() => history.push('/movies'))
+    .catch(err => setSubmitError(err))
   }
 
   function handleLogin({ email, password }) {
     return mainApi.authorize(email, password)
-    .then(() => {
-      history.push('/movies');
-    })
-    .catch((err) => {
-      setSubmitError(err);
-    })
+    .then(() => history.push('/movies'))
+    .catch(err => setSubmitError(err))
   }
   return (
     <div className="app">
