@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import '../Movies/Movies.css';
-
 import { moviesApi } from '../../utils/constants';
 import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
@@ -12,7 +10,7 @@ function Movies() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [submitError, setSubmitError] = useState({});
-  const [isValid, setIsValid] = useState(true);
+  const [isValid, setIsValid] = useState(false);
 
   function handleChange(event) {
     const target = event.target;
@@ -26,12 +24,15 @@ function Movies() {
 
   useEffect(() => {
     moviesApi.getMovies()
-      .then((movies) => {
-        const results = movies.filter(movie => movie.nameRU.toLowerCase().includes(searchTerm));
-        setMovies(results);
-        setIsLoading(false);
-      })
-      .catch(err => setSubmitError(err))
+    .then((movies) => {
+      const results = movies.filter(movie => movie.nameRU.toLowerCase().includes(searchTerm));
+      setMovies(results);
+      setIsLoading(false);
+    })
+    .catch((err) => {
+      setSubmitError(err);
+      setIsLoading(false);
+    })
   }, [searchTerm]);
 
   return (
@@ -39,16 +40,16 @@ function Movies() {
       <SearchForm
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
-        setIsValid={setIsValid}
+        isValid={isValid}
         handleChange={handleChange}
         setSubmitError={setSubmitError}
       />
       <Preloader 
         isLoading={isLoading}
       />
-      <span className={`movies-form__error ${!isValid && 'movies-form__error_active'}`}>Нужно ввести ключевое слово</span>
       <MoviesCardList
         isLoading={isLoading}
+        isValid={isValid}
         movies={movies}
         isError={!isValid}
       />

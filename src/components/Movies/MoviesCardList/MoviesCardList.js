@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 import MoviesCard from '../MoviesCardList/MoviesCard/MoviesCard';
 
-function MoviesCardList({ isLoading, movies, isError}) {
+function MoviesCardList({ isLoading, isValid, movies}) {
   const width = window.innerWidth;
   let initialImagePerRow;
   let nextImagePerRow;
@@ -27,7 +27,7 @@ function MoviesCardList({ isLoading, movies, isError}) {
   }
 
   return (
-    <section className={`movies ${isLoading && 'movies_hidden'}`}>
+    <section className={`movies ${(isLoading || !isValid) && 'movies_hidden'}`}>
       <div className='movies__container'>
         {movies?.slice(0, row)?.map((card) => (
           <MoviesCard
@@ -36,7 +36,7 @@ function MoviesCardList({ isLoading, movies, isError}) {
         ))}
       </div>
       <button
-        className={`movies__button ${isError && 'movies__button_disabled'}`}
+        className='movies__button'
         type='button'
         onClick={loadMoreImage}
       >Ещё</button>
