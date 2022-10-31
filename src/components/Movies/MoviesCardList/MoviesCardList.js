@@ -6,37 +6,39 @@ import MoviesCard from '../MoviesCardList/MoviesCard/MoviesCard';
 
 function MoviesCardList({ isLoading, isValid, movies}) {
   const width = window.innerWidth;
-  let initialImagePerRow;
-  let nextImagePerRow;
+  let initialCardsQuantity;
+  let nextCardPerRow;
 
   if (width <= 767) {
-    initialImagePerRow = 5;
-    nextImagePerRow = 2;
+    initialCardsQuantity = 5;
+    nextCardPerRow = 2;
   } else if (width >= 768 && width <= 1279) {
-    initialImagePerRow = 8;
-    nextImagePerRow = 2;
+    initialCardsQuantity = 8;
+    nextCardPerRow = 2;
   } else if (width >= 1280) {
-    initialImagePerRow = 12;
-    nextImagePerRow = 4;
+    initialCardsQuantity = 12;
+    nextCardPerRow = 4;
   } 
 
-  const [row, setRow] = useState(initialImagePerRow);
+  const [totalQuantity, setTotalQuantity] = useState(initialCardsQuantity);
 
   function loadMoreImage() {
-    setRow(row + nextImagePerRow);
+    setTotalQuantity(totalQuantity + nextCardPerRow);
   }
 
   return (
     <section className={`movies ${(isLoading || !isValid) && 'movies_hidden'}`}>
       <div className='movies__container'>
-        {movies?.slice(0, row)?.map((card) => (
+        {movies?.slice(0, totalQuantity)?.map((card) => (
           <MoviesCard
+            key={card.id}
+            id={card.id}
             card={card}
           />
         ))}
       </div>
       <button
-        className='movies__button'
+        className={(totalQuantity < movies.length) ? 'movies__button' : 'movies__button_disabled'}
         type='button'
         onClick={loadMoreImage}
       >Ещё</button>
