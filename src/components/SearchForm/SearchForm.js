@@ -1,6 +1,7 @@
 import '../SearchForm/SearchForm.css';
 
 import React, { useState, useEffect } from 'react';
+import { NOT_FOUND_ERROR_MESSAGE, GENERAL_ERROR_MESSAGE } from '../../utils/constants';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 function SearchForm({ searchTerm, isValid, handleChange, filterShortMovies, shortMovies }) {
@@ -13,8 +14,10 @@ function SearchForm({ searchTerm, isValid, handleChange, filterShortMovies, shor
   function handleSubmit(event) {
     event.preventDefault();
 
-    if (!isValid) {
-      setErrorMessage('Нужно ввести ключевое слово.');
+    if (!isValid && !searchTerm) {
+      setErrorMessage(NOT_FOUND_ERROR_MESSAGE);
+    } else if (!isValid) {
+      setErrorMessage(GENERAL_ERROR_MESSAGE);
     }
   }
   return (

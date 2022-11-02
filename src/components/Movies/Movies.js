@@ -51,10 +51,8 @@ function Movies() {
     <main className="content">
       <SearchForm
         searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
         isValid={isValid}
         handleChange={handleChange}
-        setSubmitError={setSubmitError}
         filterShortMovies={switchShortMovies}
         shortMovies={isShortMovie}
       />
