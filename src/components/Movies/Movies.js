@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
 import { moviesApi } from '../../utils/constants';
+import { handleMovieSearchFilter, handleShortMoviesFilter } from '../../utils/utils';
 import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 
 function Movies() {
   const [movies, setMovies] = useState([]);
+  const [isShortMovie, setIsShortMovie] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [submitError, setSubmitError] = useState({});
@@ -22,18 +24,28 @@ function Movies() {
     setIsValid(target.closest('form').checkValidity());
   };
 
+  function switchShortMovies() {
+    setIsShortMovie(!isShortMovie);
+  }
+
   useEffect(() => {
     moviesApi.getMovies()
     .then((movies) => {
-      const results = movies.filter(movie => movie.nameRU.toLowerCase().includes(searchTerm));
-      setMovies(results);
+      if (isShortMovie) {
+        const shortMovies = handleShortMoviesFilter(movies);
+        const results = handleMovieSearchFilter(shortMovies, searchTerm);
+        setMovies(results);
+      } else {
+        const results = handleMovieSearchFilter(movies, searchTerm);
+        setMovies(results);
+      }
       setIsLoading(false);
     })
     .catch((err) => {
       setSubmitError(err);
       setIsLoading(false);
     })
-  }, [searchTerm]);
+  }, [searchTerm, isShortMovie]);
 
   return (
     <main className="content">
@@ -43,6 +55,8 @@ function Movies() {
         isValid={isValid}
         handleChange={handleChange}
         setSubmitError={setSubmitError}
+        filterShortMovies={switchShortMovies}
+        shortMovies={isShortMovie}
       />
       <Preloader 
         isLoading={isLoading}

@@ -11,7 +11,10 @@ const moviesApi = new MoviesApi({
   headers: { 'Content-Type': 'application/json' },
 });
 
+const SHORT_MOVIES_DURATION = 40;
+
 export {
   mainApi,
-  moviesApi
+  moviesApi,
+  SHORT_MOVIES_DURATION
 }

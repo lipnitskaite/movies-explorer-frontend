@@ -3,7 +3,7 @@ import '../SearchForm/SearchForm.css';
 import React, { useState, useEffect } from 'react';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-function SearchForm({ searchTerm, isValid, handleChange }) {
+function SearchForm({ searchTerm, isValid, handleChange, filterShortMovies, shortMovies }) {
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
@@ -31,7 +31,10 @@ function SearchForm({ searchTerm, isValid, handleChange }) {
           ></input>
           <button className='search-form__button' type='submit'></button>
         </form>
-        <FilterCheckbox />
+        <FilterCheckbox
+          filterShortMovies={filterShortMovies}
+          shortMovies={shortMovies}
+        />
       </div>
       <span className={`search-form__error ${!isValid && 'search-form__error_active'}`}>{errorMessage}</span>
     </section>
