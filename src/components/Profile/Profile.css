@@ -160,6 +160,10 @@
   cursor: pointer;
 }
 
+.profile__form-button_hidden {
+  display: none;
+}
+
 .profile__form-button_type_edit {
   color: var(--main-text-color);
 }

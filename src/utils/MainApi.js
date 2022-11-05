@@ -43,6 +43,14 @@ export default class MainApi {
     })
     .then(this._handleResponse)
   };
+  
+  getUserInfo() {
+    return fetch(`${this._address}/users/me`, {
+      method: 'GET',
+      credentials: 'include',
+    })
+    .then(this._handleResponse);
+  }
 
   getMovies() {
     return fetch(`${this._address}/movies`, {

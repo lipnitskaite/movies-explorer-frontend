@@ -18,16 +18,15 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
   const history = useHistory();
-  
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [submitError, setSubmitError] = useState([]);
 
+  const [loggedIn, setLoggedIn] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
+  const [submitError, setSubmitError] = useState([]);
 
   function getUserData() {
     return mainApi.getUserInfo()
-    .then(userData => console.log(userData))
-    .catch(err => console.log(err))
+    .then(userData => setCurrentUser(userData))
+    .catch(err => setSubmitError(err))
   };
 
   useEffect(() => {
@@ -55,6 +54,7 @@ function App() {
     })
     .catch(err => setSubmitError(err))
   }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
@@ -98,7 +98,10 @@ function App() {
             <Header
               isLoggedIn={true}
             />
-            <Profile />
+            <Profile
+              submitError={submitError}
+              setSubmitError={setSubmitError}
+            />
           </ProtectedRoute>
           <Route path='*'>
             <PageNotFound />
