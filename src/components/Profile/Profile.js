@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import UseFormValidation from '../Validation/Validation';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Profile({ submitError }) {
+function Profile({ isLoading, submitError }) {
   const { handleChange, errors, isValid } = UseFormValidation();
 
   const currentUser = useContext(CurrentUserContext);
@@ -21,7 +21,7 @@ function Profile({ submitError }) {
   }, [currentUser]);
 
   return (
-    <section className='profile'>
+    <section className={`profile ${isLoading && 'profile_hidden'}`}>
       <h2 className='profile__title'>{`Привет, ${name}!`}</h2>
       <form className='profile__form' name='user-update' noValidate>
         <fieldset className='profile__form-container profile__form-container_type_profile-info'>
@@ -32,7 +32,7 @@ function Profile({ submitError }) {
             type='text'
             id='name'
             name='name'
-            value={name}
+            value={name || ''}
             required
             minLength={2}
             maxLength={30}
@@ -46,7 +46,7 @@ function Profile({ submitError }) {
             type='email'
             id='email'
             name='email'
-            value={email}
+            value={email || ''}
             required
           ></input>
           <span className={`form__input-error ${errors.email && 'form__input-error_active'}`}>{errors.email || ''}</span>

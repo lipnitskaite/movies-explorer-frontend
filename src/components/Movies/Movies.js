@@ -6,10 +6,9 @@ import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 
-function Movies() {
+function Movies({ isLoading, setIsLoading }) {
   const [movies, setMovies] = useState([]);
   const [isShortMovie, setIsShortMovie] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [submitError, setSubmitError] = useState({});
   const [isValid, setIsValid] = useState(false);
@@ -45,7 +44,7 @@ function Movies() {
       setSubmitError(err);
       setIsLoading(false);
     })
-  }, [searchTerm, isShortMovie]);
+  }, [searchTerm, isShortMovie, setIsLoading]);
 
   return (
     <main className="content">

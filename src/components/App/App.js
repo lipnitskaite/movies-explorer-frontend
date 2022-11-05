@@ -20,12 +20,16 @@ function App() {
   const history = useHistory();
 
   const [loggedIn, setLoggedIn] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
   const [submitError, setSubmitError] = useState([]);
 
   function getUserData() {
     return mainApi.getUserInfo()
-    .then(userData => setCurrentUser(userData))
+    .then((userData) => {
+      setCurrentUser(userData);
+      setIsLoading(false);
+    })
     .catch(err => setSubmitError(err))
   };
 
@@ -84,7 +88,10 @@ function App() {
             <Header
               isLoggedIn={true}
             />
-            <Movies />
+            <Movies
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+            />
             <Footer />
           </ProtectedRoute>
           <ProtectedRoute path='/saved-movies' loggedIn={loggedIn}>
@@ -99,8 +106,8 @@ function App() {
               isLoggedIn={true}
             />
             <Profile
+              isLoading={isLoading}
               submitError={submitError}
-              setSubmitError={setSubmitError}
             />
           </ProtectedRoute>
           <Route path='*'>

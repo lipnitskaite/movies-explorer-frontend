@@ -8,6 +8,10 @@
   align-items: center;
 }
 
+.profile_hidden {
+  display: none;
+}
+
 .profile__title {
   margin: 0;
   margin-bottom: 80px;
