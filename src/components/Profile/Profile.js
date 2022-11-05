@@ -3,7 +3,7 @@ import '../Profile/Profile.css';
 import React, { useContext, useEffect, useState } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Profile({ isLoading, submitError, handleUpdateUserInfo, setSubmitError }) {
+function Profile({ isLoading, submitError, handleUpdateUserInfo, setSubmitError, userSignOut }) {
   const currentUser = useContext(CurrentUserContext);
 
   const [name, setName] = useState('');
@@ -89,6 +89,7 @@ function Profile({ isLoading, submitError, handleUpdateUserInfo, setSubmitError 
           <button
             className={`profile__form-button profile__form-button_type_signout ${isEditing && 'profile__form-button_hidden'}`}
             type='button'
+            onClick={userSignOut}
           >Выйти из аккаунта</button>
           <button
             className={

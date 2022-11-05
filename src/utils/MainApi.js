@@ -42,6 +42,7 @@ export default class MainApi {
     return fetch(`${this._address}/users/me`, {
       method: 'GET',
       credentials: 'include',
+      headers: this._headers,
     })
     .then(this._handleResponse);
   }
@@ -52,6 +53,15 @@ export default class MainApi {
       credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({ name, email })
+    })
+    .then(this._handleResponse);
+  }
+
+  signout() {
+    return fetch(`${this._address}/signout`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: this._headers,
     })
     .then(this._handleResponse);
   }

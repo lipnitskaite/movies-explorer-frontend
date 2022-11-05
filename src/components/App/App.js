@@ -30,7 +30,7 @@ function App() {
       setCurrentUser(userData);
       setIsLoading(false);
     })
-    .catch(err => setSubmitError(err))
+    .catch(err => console.log(err))
   };
 
   useEffect(() => {
@@ -42,8 +42,8 @@ function App() {
   function handleRegister({ name, email, password }) {
     return mainApi.register(name, email, password)
     .then(() => {
-      getUserData();
       setLoggedIn(true);
+      getUserData();
       history.push('/movies')
     })
     .catch(err => setSubmitError(err))
@@ -52,8 +52,8 @@ function App() {
   function handleLogin({ email, password }) {
     return mainApi.authorize(email, password)
     .then(() => {
-      getUserData();
       setLoggedIn(true);
+      getUserData();
       history.push('/movies')
     })
     .catch(err => setSubmitError(err))
@@ -63,6 +63,15 @@ function App() {
     return mainApi.updateUserInfo(name, email)
     .then((userData) => {
       setCurrentUser(userData);
+    })
+    .catch(err => setSubmitError(err))
+  }
+
+  function handleUserSignOut() {
+    return mainApi.signout()
+    .then(() => {
+      setLoggedIn(false);
+      history.push('/');
     })
     .catch(err => setSubmitError(err))
   }
@@ -118,6 +127,7 @@ function App() {
               submitError={submitError}
               handleUpdateUserInfo={handleUpdateUserInfo}
               setSubmitError={setSubmitError}
+              userSignOut={handleUserSignOut}
             />
           </ProtectedRoute>
           <Route path='*'>
