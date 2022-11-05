@@ -59,6 +59,14 @@ function App() {
     .catch(err => setSubmitError(err))
   }
 
+  function handleUpdateUserInfo({ name, email }) {
+    return mainApi.updateUserInfo(name, email)
+    .then((userData) => {
+      setCurrentUser(userData);
+    })
+    .catch(err => setSubmitError(err))
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
@@ -108,6 +116,8 @@ function App() {
             <Profile
               isLoading={isLoading}
               submitError={submitError}
+              handleUpdateUserInfo={handleUpdateUserInfo}
+              setSubmitError={setSubmitError}
             />
           </ProtectedRoute>
           <Route path='*'>

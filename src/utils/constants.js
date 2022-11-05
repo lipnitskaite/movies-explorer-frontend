@@ -3,7 +3,10 @@ import MoviesApi from '../utils/MoviesApi';
 
 const mainApi = new MainApi({
   address: 'https://api.movies.lipnitskaite.nomoredomains.sbs',
-  headers: { 'Content-Type': 'application/json' },
+  headers: { 
+    "Accept": "application/json",
+    "Content-Type": "application/json"
+  },
 });
 
 const moviesApi = new MoviesApi({

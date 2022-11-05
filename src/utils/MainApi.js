@@ -22,10 +22,7 @@ export default class MainApi {
     return fetch(`${this._address}/signup`, {
       method: 'POST',
       credentials: 'include',
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
+      headers: this._headers,
       body: JSON.stringify({ name, email, password })
     })
     .then(this._handleResponse)
@@ -35,10 +32,7 @@ export default class MainApi {
     return fetch(`${this._address}/signin`, {
       method: 'POST',
       credentials: 'include',
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
+      headers: this._headers,
       body: JSON.stringify({ email, password })
     })
     .then(this._handleResponse)
@@ -48,6 +42,16 @@ export default class MainApi {
     return fetch(`${this._address}/users/me`, {
       method: 'GET',
       credentials: 'include',
+    })
+    .then(this._handleResponse);
+  }
+
+  updateUserInfo(name, email) {
+    return fetch(`${this._address}/users/me`, {
+      method: 'PATCH',
+      credentials: 'include',
+      headers: this._headers,
+      body: JSON.stringify({ name, email })
     })
     .then(this._handleResponse);
   }
