@@ -13,12 +13,18 @@ function transformMovieDuration(duration) {
   }
 }
 
-function handleMovieSearchFilter(movies, searchTerm) {
-  return movies.filter(movie => movie.nameRU.toLowerCase().includes(searchTerm));
-}
-
 function handleShortMoviesFilter(movies) {
   return movies.filter(movie => movie.duration <= SHORT_MOVIES_DURATION);
+}
+
+function handleMovieSearchFilter(movies, searchTerm, isShortMovie) {
+  const moviesList = movies.filter(movie => movie.nameRU.toLowerCase().includes(searchTerm));
+
+  if (isShortMovie) {
+    return handleShortMoviesFilter(moviesList);
+  } else {
+    return moviesList;
+  }
 }
 
 export {

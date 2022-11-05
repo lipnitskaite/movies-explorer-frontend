@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
 import { moviesApi } from '../../utils/constants';
-import { handleMovieSearchFilter, handleShortMoviesFilter } from '../../utils/utils';
+import { handleMovieSearchFilter } from '../../utils/utils';
 import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 
 function Movies({ isLoading, setIsLoading }) {
-  const [movies, setMovies] = useState([]);
-  const [isShortMovie, setIsShortMovie] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredMovies, setFilteredMovies] = useState(JSON.parse(localStorage.getItem(`movies`)));
+  const [isShortMovie, setIsShortMovie] = useState(localStorage.getItem(`shortMovieSwitcher`) === 'true');
+  const [searchTerm, setSearchTerm] = useState(localStorage.getItem(`movieSearchInput`) || '');
   const [submitError, setSubmitError] = useState({});
-  const [isValid, setIsValid] = useState(false);
+  const [isValid, setIsValid] = useState(true);
 
   function handleChange(event) {
     const target = event.target;
@@ -30,14 +30,13 @@ function Movies({ isLoading, setIsLoading }) {
   useEffect(() => {
     moviesApi.getMovies()
     .then((movies) => {
-      if (isShortMovie) {
-        const shortMovies = handleShortMoviesFilter(movies);
-        const results = handleMovieSearchFilter(shortMovies, searchTerm);
-        setMovies(results);
-      } else {
-        const results = handleMovieSearchFilter(movies, searchTerm);
-        setMovies(results);
-      }
+      const results = handleMovieSearchFilter(movies, searchTerm, isShortMovie);
+      setFilteredMovies(results);
+
+      localStorage.setItem(`movieSearchInput`, searchTerm);
+      localStorage.setItem(`shortMovieSwitcher`, isShortMovie);
+      localStorage.setItem(`movies`, JSON.stringify(results));
+
       setIsLoading(false);
     })
     .catch((err) => {
@@ -61,7 +60,7 @@ function Movies({ isLoading, setIsLoading }) {
       <MoviesCardList
         isLoading={isLoading}
         isValid={isValid}
-        movies={movies}
+        movies={filteredMovies}
         isError={!isValid}
       />
     </main>
