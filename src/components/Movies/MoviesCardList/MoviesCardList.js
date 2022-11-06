@@ -4,7 +4,9 @@ import React, { useState } from 'react';
 
 import MoviesCard from '../MoviesCardList/MoviesCard/MoviesCard';
 
-function MoviesCardList({ isLoading, searchTerm, movies}) {
+import { getSavedMovie } from '../../../utils/utils';
+
+function MoviesCardList({ isLoading, searchTerm, movies, onSaveCard, savedMovies }) {
   const width = window.innerWidth;
   let initialCardsQuantity;
   let nextCardPerRow;
@@ -34,6 +36,9 @@ function MoviesCardList({ isLoading, searchTerm, movies}) {
             key={card.id}
             id={card.id}
             card={card}
+            image={card.image.url}
+            isSaved={getSavedMovie(savedMovies, card.id)}
+            onSaveCard={onSaveCard}
           />
         ))}
       </div>

@@ -23,6 +23,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
   const [submitError, setSubmitError] = useState([]);
+  const [savedMovies, setSavedMovies] = useState([]);
 
   function getUserData() {
     return mainApi.getUserInfo()
@@ -76,6 +77,14 @@ function App() {
     .catch(err => setSubmitError(err))
   }
 
+  function handleSaveMovie(movie) {
+    mainApi.addMovie(movie)
+    .then(movie => {
+      setSavedMovies([ movie, ...savedMovies ]);
+    })
+    .catch(err => console.log(err))
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
@@ -108,6 +117,8 @@ function App() {
             <Movies
               isLoading={isLoading}
               setIsLoading={setIsLoading}
+              onSaveCard={handleSaveMovie}
+              savedMovies={savedMovies}
             />
             <Footer />
           </ProtectedRoute>
@@ -115,7 +126,11 @@ function App() {
             <Header
               isLoggedIn={true}
             />
-            <SavedMovies />
+            <SavedMovies
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+              setSubmitError={setSubmitError}
+            />
             <Footer />
           </ProtectedRoute>
           <ProtectedRoute path='/profile' loggedIn={loggedIn}>

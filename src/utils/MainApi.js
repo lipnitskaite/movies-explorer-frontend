@@ -66,31 +66,33 @@ export default class MainApi {
     .then(this._handleResponse);
   }
 
-  getMovies() {
+  addMovie(data) {
     return fetch(`${this._address}/movies`, {
-      method: 'GET',
-    })
-    .then(this._handleResponse);
-  }
-  
-  saveMovie(data) {
-    return fetch(`${this._address}/saved-movies`, {
       method: 'POST',
       credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
-        country : data.country,
+        country: data.country,
         director: data.director,
         duration: data.duration,
         year: data.year,
         description: data.description,
         image: data.image.url,
         trailerLink: data.trailerLink,
-        thumbnail: data.thumbnail.url,
+        thumbnail: `https://api.nomoreparties.co/${data.image.formats.thumbnail.url}`,
         movieId: data.id,
         nameRU: data.nameRU,
         nameEN: data.nameEN
       })
+    })
+    .then(this._handleResponse);
+  }
+
+  getMovies() {
+    return fetch(`${this._address}/movies`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: this._headers,
     })
     .then(this._handleResponse);
   }
