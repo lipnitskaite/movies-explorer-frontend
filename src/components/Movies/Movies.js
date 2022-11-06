@@ -6,10 +6,10 @@ import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 
-function Movies({ isLoading, setIsLoading }) {
-  const [filteredMovies, setFilteredMovies] = useState(JSON.parse(localStorage.getItem(`movies`)));
-  const [isShortMovie, setIsShortMovie] = useState(localStorage.getItem(`shortMovieSwitcher`) === 'true');
-  const [searchTerm, setSearchTerm] = useState(localStorage.getItem(`movieSearchInput`) || '');
+function Movies({ isLoading, setIsLoading, onSaveCard, savedMovies }) {
+  const [filteredMovies, setFilteredMovies] = useState(JSON.parse(localStorage.getItem('movies')) || []);
+  const [isShortMovie, setIsShortMovie] = useState(localStorage.getItem('shortMovieSwitcher') === 'true');
+  const [searchTerm, setSearchTerm] = useState(localStorage.getItem('movieSearchInput') || '');
   const [submitError, setSubmitError] = useState({});
   const [isValid, setIsValid] = useState(true);
 
@@ -30,6 +30,7 @@ function Movies({ isLoading, setIsLoading }) {
   useEffect(() => {
     moviesApi.getMovies()
     .then((movies) => {
+      movies.forEach(movie => movie.image.url = `https://api.nomoreparties.co${movie.image.url}`)
       const results = handleMovieSearchFilter(movies, searchTerm, isShortMovie);
       setFilteredMovies(results);
 
@@ -61,7 +62,8 @@ function Movies({ isLoading, setIsLoading }) {
         isLoading={isLoading}
         searchTerm={searchTerm}
         movies={filteredMovies}
-        isError={!isValid}
+        onSaveCard={onSaveCard}
+        savedMovies={savedMovies}
       />
     </main>
   );
