@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 import MoviesCard from '../MoviesCardList/MoviesCard/MoviesCard';
 
-function MoviesCardList({ isLoading, isValid, movies}) {
+function MoviesCardList({ isLoading, searchTerm, movies}) {
   const width = window.innerWidth;
   let initialCardsQuantity;
   let nextCardPerRow;
@@ -27,7 +27,7 @@ function MoviesCardList({ isLoading, isValid, movies}) {
   }
 
   return (
-    <section className={`movies ${(isLoading || !isValid) && 'movies_hidden'}`}>
+    <section className={`movies ${(isLoading || !searchTerm) && 'movies_hidden'}`}>
       <div className='movies__container'>
         {movies?.slice(0, totalQuantity)?.map((card) => (
           <MoviesCard

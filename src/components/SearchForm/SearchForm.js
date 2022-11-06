@@ -9,12 +9,12 @@ function SearchForm({ searchTerm, isValid, handleChange, filterShortMovies, shor
 
   useEffect(() => {
     setErrorMessage('');
-  }, [isValid]);
+  }, [isValid, searchTerm]);
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    if (!isValid && !searchTerm) {
+    if (!searchTerm) {
       setErrorMessage(NOT_FOUND_ERROR_MESSAGE);
     } else if (!isValid) {
       setErrorMessage(GENERAL_ERROR_MESSAGE);
@@ -39,7 +39,7 @@ function SearchForm({ searchTerm, isValid, handleChange, filterShortMovies, shor
           shortMovies={shortMovies}
         />
       </div>
-      <span className={`search-form__error ${!isValid && 'search-form__error_active'}`}>{errorMessage}</span>
+      <span className={`search-form__error ${!searchTerm && 'search-form__error_active'}`}>{errorMessage}</span>
     </section>
   );
 }

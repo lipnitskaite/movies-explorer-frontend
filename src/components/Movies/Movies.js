@@ -59,7 +59,7 @@ function Movies({ isLoading, setIsLoading }) {
       />
       <MoviesCardList
         isLoading={isLoading}
-        isValid={isValid}
+        searchTerm={searchTerm}
         movies={filteredMovies}
         isError={!isValid}
       />
