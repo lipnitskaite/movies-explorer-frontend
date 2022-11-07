@@ -28,9 +28,13 @@ function handleMovieSearchFilter(movies, searchTerm, isShortMovie) {
 }
 
 function getSavedMovie(savedMovies, id) {
-  return savedMovies.some((item) => {
-    return (item.movieId === id);
-  });
+  if (!savedMovies) {
+    return false;
+  } else {
+    return savedMovies.some((item) => {
+      return (item.movieId === id);
+    });
+  }
 }
 
 export {

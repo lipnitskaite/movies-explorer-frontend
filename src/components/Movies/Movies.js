@@ -6,7 +6,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 
-function Movies({ isLoading, setIsLoading, onSaveCard, savedMovies }) {
+function Movies({ isLoading, setIsLoading, onSaveCard, savedMovies, onDeleteCard }) {
   const [filteredMovies, setFilteredMovies] = useState(JSON.parse(localStorage.getItem('movies')) || []);
   const [isShortMovie, setIsShortMovie] = useState(localStorage.getItem('shortMovieSwitcher') === 'true');
   const [searchTerm, setSearchTerm] = useState(localStorage.getItem('movieSearchInput') || '');
@@ -34,16 +34,14 @@ function Movies({ isLoading, setIsLoading, onSaveCard, savedMovies }) {
       const results = handleMovieSearchFilter(movies, searchTerm, isShortMovie);
       setFilteredMovies(results);
 
-      localStorage.setItem(`movieSearchInput`, searchTerm);
-      localStorage.setItem(`shortMovieSwitcher`, isShortMovie);
-      localStorage.setItem(`movies`, JSON.stringify(results));
-
-      setIsLoading(false);
+      localStorage.setItem('movieSearchInput', searchTerm);
+      localStorage.setItem('shortMovieSwitcher', isShortMovie);
+      localStorage.setItem('movies', JSON.stringify(results));
     })
     .catch((err) => {
       setSubmitError(err);
-      setIsLoading(false);
     })
+    .finally(() => setIsLoading(false))
   }, [searchTerm, isShortMovie, setIsLoading]);
 
   return (
@@ -64,6 +62,7 @@ function Movies({ isLoading, setIsLoading, onSaveCard, savedMovies }) {
         movies={filteredMovies}
         onSaveCard={onSaveCard}
         savedMovies={savedMovies}
+        onDeleteCard={onDeleteCard}
       />
     </main>
   );

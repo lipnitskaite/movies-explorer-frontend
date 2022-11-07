@@ -25,26 +25,28 @@ function App() {
   const [submitError, setSubmitError] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
 
-  function getUserData() {
-    return mainApi.getUserInfo()
-    .then((userData) => {
-      setCurrentUser(userData);
-      setIsLoading(false);
-    })
-    .catch(err => console.log(err))
+  async function getUserData() {
+    try {
+      const response = await mainApi.getUserInfo();
+      return response;
+    } catch (err) {
+      console.log(err)
+    }
   };
 
-  useEffect(() => {
-    if (loggedIn) {
-      getUserData();
+  async function getSavedMovies() {
+    try {
+      const movies = await mainApi.getMovies();
+      return movies;
+    } catch (err) {
+      console.log(err)
     }
-  }, [loggedIn])
+  };
 
   function handleRegister({ name, email, password }) {
     return mainApi.register(name, email, password)
     .then(() => {
       setLoggedIn(true);
-      getUserData();
       history.push('/movies')
     })
     .catch(err => setSubmitError(err))
@@ -54,7 +56,6 @@ function App() {
     return mainApi.authorize(email, password)
     .then(() => {
       setLoggedIn(true);
-      getUserData();
       history.push('/movies')
     })
     .catch(err => setSubmitError(err))
@@ -62,9 +63,7 @@ function App() {
 
   function handleUpdateUserInfo({ name, email }) {
     return mainApi.updateUserInfo(name, email)
-    .then((userData) => {
-      setCurrentUser(userData);
-    })
+    .then(userData => setCurrentUser(userData))
     .catch(err => setSubmitError(err))
   }
 
@@ -79,11 +78,37 @@ function App() {
 
   function handleSaveMovie(movie) {
     mainApi.addMovie(movie)
-    .then(movie => {
-      setSavedMovies([ movie, ...savedMovies ]);
-    })
+    .then(movie => setSavedMovies([ movie, ...savedMovies ]))
     .catch(err => console.log(err))
   }
+
+  function handleDeleteMovie(movie) {
+    const savedMovie = savedMovies.find(item => item.movieId === movie.id || item.movieId === movie.movieId);
+    mainApi.deleteMovie(savedMovie._id)
+    .then((movie) => {
+      setSavedMovies((state) => state.filter((c) => c._id !== movie._id));
+    })
+    .catch((err) => console.log(err))
+    .finally(() => setIsLoading(false))
+  }
+
+  useEffect(() => {
+    if (loggedIn) {
+      getUserData()
+      .then(userData => setCurrentUser(userData))
+      .catch(err => console.log(err))
+      .finally(() => setIsLoading(false))
+    }
+  }, [loggedIn])
+  
+  useEffect(() => {
+    if (loggedIn) {
+      getSavedMovies()
+      .then(cards => setSavedMovies(cards))
+      .catch(err => console.log(err))
+      .finally(() => setIsLoading(false))
+    }
+  }, [loggedIn])
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -119,6 +144,7 @@ function App() {
               setIsLoading={setIsLoading}
               onSaveCard={handleSaveMovie}
               savedMovies={savedMovies}
+              onDeleteCard={handleDeleteMovie}
             />
             <Footer />
           </ProtectedRoute>
@@ -130,6 +156,8 @@ function App() {
               isLoading={isLoading}
               setIsLoading={setIsLoading}
               setSubmitError={setSubmitError}
+              onDeleteCard={handleDeleteMovie}
+              savedMovies={savedMovies}
             />
             <Footer />
           </ProtectedRoute>

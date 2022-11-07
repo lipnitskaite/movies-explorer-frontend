@@ -6,7 +6,7 @@ import MoviesCard from '../MoviesCardList/MoviesCard/MoviesCard';
 
 import { getSavedMovie } from '../../../utils/utils';
 
-function MoviesCardList({ isLoading, searchTerm, movies, onSaveCard, savedMovies }) {
+function MoviesCardList({ isLoading, searchTerm, movies, onSaveCard, savedMovies, onDeleteCard }) {
   const width = window.innerWidth;
   let initialCardsQuantity;
   let nextCardPerRow;
@@ -39,6 +39,7 @@ function MoviesCardList({ isLoading, searchTerm, movies, onSaveCard, savedMovies
             image={card.image.url}
             isSaved={getSavedMovie(savedMovies, card.id)}
             onSaveCard={onSaveCard}
+            onDeleteCard={onDeleteCard}
           />
         ))}
       </div>

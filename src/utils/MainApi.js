@@ -96,4 +96,13 @@ export default class MainApi {
     })
     .then(this._handleResponse);
   }
+
+  deleteMovie(id) {
+    return fetch(`${this._address}/movies/${id}`, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: this._headers,
+    })
+    .then(this._handleResponse)
+  }
 }
