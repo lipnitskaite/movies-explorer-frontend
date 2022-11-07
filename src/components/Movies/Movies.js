@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { moviesApi } from '../../utils/constants';
 import { handleMovieSearchFilter } from '../../utils/utils';
+import { NOT_FOUND_ERROR_MESSAGE, EMPTY_QUERY_ERROR_MESSAGE, GENERAL_ERROR_MESSAGE } from '../../utils/constants';
+
 import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
@@ -10,48 +12,47 @@ function Movies({ isLoading, setIsLoading, onSaveCard, savedMovies, onDeleteCard
   const [filteredMovies, setFilteredMovies] = useState(JSON.parse(localStorage.getItem('movies')) || []);
   const [isShortMovie, setIsShortMovie] = useState(localStorage.getItem('shortMovieSwitcher') === 'true');
   const [searchTerm, setSearchTerm] = useState(localStorage.getItem('movieSearchInput') || '');
-  const [submitError, setSubmitError] = useState({});
-  const [isValid, setIsValid] = useState(true);
-
-  function handleChange(event) {
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
-
-    setSearchTerm(value);
-    setSubmitError({ ...submitError, [name]: target.validationMessage });
-    setIsValid(target.closest('form').checkValidity());
-  };
+  const [submitError, setSubmitError] = useState('');
 
   function switchShortMovies() {
     setIsShortMovie(!isShortMovie);
   }
 
-  useEffect(() => {
+  function showErrorMessage(results) {
+    if (!searchTerm) {
+      setSubmitError(EMPTY_QUERY_ERROR_MESSAGE);
+    } else if (searchTerm && results.length === 0) {
+      setSubmitError(NOT_FOUND_ERROR_MESSAGE);
+    }
+  }
+
+  function handleMovieSearch() {
     moviesApi.getMovies()
     .then((movies) => {
       movies.forEach(movie => movie.image.url = `https://api.nomoreparties.co${movie.image.url}`)
       const results = handleMovieSearchFilter(movies, searchTerm, isShortMovie);
+
       setFilteredMovies(results);
+      showErrorMessage(results);
 
       localStorage.setItem('movieSearchInput', searchTerm);
       localStorage.setItem('shortMovieSwitcher', isShortMovie);
       localStorage.setItem('movies', JSON.stringify(results));
     })
-    .catch((err) => {
-      setSubmitError(err);
-    })
+    .catch(() => setSubmitError(GENERAL_ERROR_MESSAGE))
     .finally(() => setIsLoading(false))
-  }, [searchTerm, isShortMovie, setIsLoading]);
+  }
 
   return (
     <main className="content">
       <SearchForm
         searchTerm={searchTerm}
-        isValid={isValid}
-        handleChange={handleChange}
+        setSearchTerm={setSearchTerm}
+        handleMovieSearch={handleMovieSearch}
         filterShortMovies={switchShortMovies}
         shortMovies={isShortMovie}
+        submitError={submitError}
+        filteredMovies={filteredMovies}
       />
       <Preloader 
         isLoading={isLoading}

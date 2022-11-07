@@ -1,25 +1,26 @@
 import '../SearchForm/SearchForm.css';
 
-import React, { useState, useEffect } from 'react';
-import { NOT_FOUND_ERROR_MESSAGE, GENERAL_ERROR_MESSAGE } from '../../utils/constants';
+import React from 'react';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-function SearchForm({ searchTerm, isValid, handleChange, filterShortMovies, shortMovies }) {
-  const [errorMessage, setErrorMessage] = useState('');
-
-  useEffect(() => {
-    setErrorMessage('');
-  }, [isValid, searchTerm]);
+function SearchForm({
+  searchTerm,
+  setSearchTerm,
+  handleMovieSearch,
+  filterShortMovies,
+  shortMovies,
+  submitError,
+  filteredMovies
+  }) {
+  function handleChange(event) {
+    setSearchTerm(event.target.value);
+  };
 
   function handleSubmit(event) {
     event.preventDefault();
-
-    if (!searchTerm) {
-      setErrorMessage(NOT_FOUND_ERROR_MESSAGE);
-    } else if (!isValid) {
-      setErrorMessage(GENERAL_ERROR_MESSAGE);
-    }
+    handleMovieSearch();
   }
+  
   return (
     <section className='search-form'>
       <div className='search-form__container'>
@@ -39,7 +40,7 @@ function SearchForm({ searchTerm, isValid, handleChange, filterShortMovies, shor
           shortMovies={shortMovies}
         />
       </div>
-      <span className={`search-form__error ${!searchTerm && 'search-form__error_active'}`}>{errorMessage}</span>
+      <span className={`search-form__error ${(!searchTerm || filteredMovies.length === 0) && 'search-form__error_active'}`}>{submitError}</span>
     </section>
   );
 }

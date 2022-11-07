@@ -15,7 +15,8 @@ const moviesApi = new MoviesApi({
 });
 
 const SHORT_MOVIES_DURATION = 40;
-const NOT_FOUND_ERROR_MESSAGE = 'Нужно ввести ключевое слово.';
+const NOT_FOUND_ERROR_MESSAGE = 'Ничего не найдено.';
+const EMPTY_QUERY_ERROR_MESSAGE = 'Нужно ввести ключевое слово.';
 const GENERAL_ERROR_MESSAGE = 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз';
 
 export {
@@ -23,5 +24,6 @@ export {
   moviesApi,
   SHORT_MOVIES_DURATION,
   NOT_FOUND_ERROR_MESSAGE,
+  EMPTY_QUERY_ERROR_MESSAGE,
   GENERAL_ERROR_MESSAGE,
 }
