@@ -71,6 +71,7 @@ function App() {
     return mainApi.signout()
     .then(() => {
       setLoggedIn(false);
+      setCurrentUser({});
       history.push('/');
     })
     .catch(err => setSubmitError(err))
@@ -116,7 +117,7 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <Header
-              isLoggedIn={false}
+              isLoggedIn={loggedIn && currentUser}
             />
             <Main />
             <Footer />
@@ -137,7 +138,7 @@ function App() {
           </Route>
           <ProtectedRoute path='/movies' loggedIn={loggedIn}>
             <Header
-              isLoggedIn={true}
+              isLoggedIn={loggedIn}
             />
             <Movies
               isLoading={isLoading}
@@ -150,7 +151,7 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path='/saved-movies' loggedIn={loggedIn}>
             <Header
-              isLoggedIn={true}
+              isLoggedIn={loggedIn}
             />
             <SavedMovies
               isLoading={isLoading}
@@ -163,7 +164,7 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path='/profile' loggedIn={loggedIn}>
             <Header
-              isLoggedIn={true}
+              isLoggedIn={loggedIn}
             />
             <Profile
               isLoading={isLoading}

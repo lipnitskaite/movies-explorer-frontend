@@ -6,10 +6,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.header__type_main {
-  background-color: var(--secondary-bg-color);
+  background: transparent;
+  position: absolute;
 }
 
 .header__nav_disabled {

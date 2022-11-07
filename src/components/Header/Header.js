@@ -12,7 +12,7 @@ function Header(props) {
   const closeNavigationPopup = () => {setIsNavigationPopupOpen(false)};
 
   return (
-    <header className={props.isLoggedIn ? "header" : "header header__type_main"}>
+    <header className='header'>
       <Link to={'/'}>
         <Logo />
       </Link>

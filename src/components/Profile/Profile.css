@@ -2,7 +2,7 @@
   box-sizing: border-box;
   width: 100%;
   height: calc(100vh - 74px);
-  padding: 70px 10px 40px 10px;
+  padding: 145px 10px 40px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -218,7 +218,7 @@
 @media screen and (min-width: 1280px) {
   .profile {
     height: calc(100vh - 74px);
-    padding: 11vh 0 10vh 0;
+    padding: 25vh 0 10vh 0;
   }
   
   .profile__title {
