@@ -6,6 +6,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import { mainApi } from '../../utils/constants';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -21,16 +22,25 @@ function App() {
 
   const [loggedIn, setLoggedIn] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+  const [isOperationSuccessful, setIsOperationSuccessful] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
   const [submitError, setSubmitError] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
+  const [operationResultMessage, setOperationResultMessage] = useState('');
+
+  const closePopup = () => {
+    setIsInfoTooltipOpen(false);
+  };
 
   async function getUserData() {
     try {
       const response = await mainApi.getUserInfo();
       return response;
     } catch (err) {
-      console.log(err)
+      setIsInfoTooltipOpen(true);
+      setIsOperationSuccessful(false);
+      setOperationResultMessage(`Невозможно отобразить данные пользователя. ${err}`);
     }
   };
 
@@ -39,7 +49,9 @@ function App() {
       const movies = await mainApi.getMovies();
       return movies;
     } catch (err) {
-      console.log(err)
+      setIsInfoTooltipOpen(true);
+      setIsOperationSuccessful(false);
+      setOperationResultMessage(`Невозможно отобразить сохраненные фильмы. ${err}`);
     }
   };
 
@@ -63,7 +75,12 @@ function App() {
 
   function handleUpdateUserInfo({ name, email }) {
     return mainApi.updateUserInfo(name, email)
-    .then(userData => setCurrentUser(userData))
+    .then((userData) => {
+      setCurrentUser(userData);
+      setIsInfoTooltipOpen(true);
+      setIsOperationSuccessful(true);
+      setOperationResultMessage('Данные пользователя успешно обновлены!');
+    })
     .catch(err => setSubmitError(err))
   }
 
@@ -80,7 +97,11 @@ function App() {
   function handleSaveMovie(movie) {
     mainApi.addMovie(movie)
     .then(movie => setSavedMovies([ movie, ...savedMovies ]))
-    .catch(err => console.log(err))
+    .catch((err) => {
+      setIsInfoTooltipOpen(true);
+      setIsOperationSuccessful(false);
+      setOperationResultMessage(`Невозможно сохранить фильм. ${err}`);
+    })
   }
 
   function handleDeleteMovie(movie) {
@@ -89,7 +110,11 @@ function App() {
     .then((movie) => {
       setSavedMovies((state) => state.filter((c) => c._id !== movie._id));
     })
-    .catch((err) => console.log(err))
+    .catch((err) => {
+      setIsInfoTooltipOpen(true);
+      setIsOperationSuccessful(false);
+      setOperationResultMessage(`Невозможно убрать фильм из сохраненных. ${err}`);
+    })
     .finally(() => setIsLoading(false))
   }
 
@@ -97,7 +122,11 @@ function App() {
     if (loggedIn) {
       getUserData()
       .then(userData => setCurrentUser(userData))
-      .catch(err => console.log(err))
+      .catch((err) => {
+        setIsInfoTooltipOpen(true);
+        setIsOperationSuccessful(false);
+        setOperationResultMessage(`Невозможно отобразить данные пользователя. ${err}`);
+      })
       .finally(() => setIsLoading(false))
     }
   }, [loggedIn])
@@ -106,7 +135,11 @@ function App() {
     if (loggedIn) {
       getSavedMovies()
       .then(cards => setSavedMovies(cards))
-      .catch(err => console.log(err))
+      .catch((err) => {
+        setIsInfoTooltipOpen(true);
+        setIsOperationSuccessful(false);
+        setOperationResultMessage(`Невозможно отобразить сохраненные фильмы. ${err}`);
+      })
       .finally(() => setIsLoading(false))
     }
   }, [loggedIn])
@@ -178,6 +211,13 @@ function App() {
             <PageNotFound />
           </Route>
         </Switch>
+
+        <InfoTooltip 
+          isOpen={isInfoTooltipOpen}
+          isSuccessful={isOperationSuccessful}
+          onClose={closePopup}
+          operationResultMessage={operationResultMessage}
+        />
       </div>
     </CurrentUserContext.Provider>
   );
