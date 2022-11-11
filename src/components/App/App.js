@@ -6,6 +6,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import { mainApi } from '../../utils/constants';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import ProtectedAuthRoute from '../ProtectedRoute/ProtectedAuthRoute';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -20,7 +21,7 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 function App() {
   const history = useHistory();
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'false');
   const [isLoading, setIsLoading] = useState(true);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [isOperationSuccessful, setIsOperationSuccessful] = useState(true);
@@ -58,18 +59,20 @@ function App() {
   function handleRegister({ name, email, password }) {
     return mainApi.register(name, email, password)
     .then(() => {
-      setLoggedIn(true);
+      setLoggedIn(!loggedIn);
       history.push('/movies')
     })
+    .then(() => localStorage.setItem('isLoggedIn', loggedIn))
     .catch(err => setSubmitError(err))
   }
 
   function handleLogin({ email, password }) {
     return mainApi.authorize(email, password)
     .then(() => {
-      setLoggedIn(true);
-      history.push('/movies')
+      setLoggedIn(!loggedIn);
+      history.push('/movies');
     })
+    .then(() => localStorage.setItem('isLoggedIn', loggedIn))
     .catch(err => setSubmitError(err))
   }
 
@@ -89,6 +92,10 @@ function App() {
     .then(() => {
       setLoggedIn(false);
       setCurrentUser({});
+      setSubmitError([]);
+      setSavedMovies([]);
+      setOperationResultMessage('');
+      localStorage.clear();
       history.push('/');
     })
     .catch(err => setSubmitError(err))
@@ -155,20 +162,20 @@ function App() {
             <Main />
             <Footer />
           </Route>
-          <Route path='/signup'>
+          <ProtectedAuthRoute path='/signup' loggedIn={loggedIn}>
             <Register 
             handleRegister={handleRegister}
             submitError={submitError}
             setSubmitError={setSubmitError}
             />
-          </Route>
-          <Route path='/signin'>
+          </ProtectedAuthRoute>
+          <ProtectedAuthRoute path='/signin' loggedIn={loggedIn}>
             <Login
               handleLogin={handleLogin}
               submitError={submitError}
               setSubmitError={setSubmitError}
             />
-          </Route>
+          </ProtectedAuthRoute>
           <ProtectedRoute path='/movies' loggedIn={loggedIn}>
             <Header
               isLoggedIn={loggedIn}
@@ -203,6 +210,7 @@ function App() {
               isLoading={isLoading}
               submitError={submitError}
               handleUpdateUserInfo={handleUpdateUserInfo}
+              setCurrentUser={setCurrentUser}
               setSubmitError={setSubmitError}
               userSignOut={handleUserSignOut}
             />
