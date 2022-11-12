@@ -3,10 +3,16 @@ import '../Profile/Profile.css';
 import React, { useContext, useEffect, useState } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Profile({ isLoading, submitError, handleUpdateUserInfo, setSubmitError, userSignOut }) {
+function Profile({
+  isLoading,
+  submitError,
+  handleUpdateUserInfo,
+  setSubmitError,
+  userSignOut
+}) {
   const currentUser = useContext(CurrentUserContext);
 
-  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [errors, setErrors] = useState({});
@@ -14,7 +20,7 @@ function Profile({ isLoading, submitError, handleUpdateUserInfo, setSubmitError,
 
   useEffect(() => {
     if (currentUser) {
-      setUsername(currentUser.name);
+      setName(currentUser.name);
       setEmail(currentUser.email);
     }
   }, [currentUser]);
@@ -31,7 +37,7 @@ function Profile({ isLoading, submitError, handleUpdateUserInfo, setSubmitError,
     const target = e.target;
     const name = target.name;
 
-    setUsername(target.value);
+    setName(target.value);
     setErrors({ ...errors, [name]: target.validationMessage });
     setIsValid(target.closest('form').checkValidity());
 
@@ -52,13 +58,13 @@ function Profile({ isLoading, submitError, handleUpdateUserInfo, setSubmitError,
   function handleSubmit(e) {
     e.preventDefault();
 
-    handleUpdateUserInfo({ username, email })
+    handleUpdateUserInfo({ name, email })
     .catch(err => setSubmitError(err))
   }
 
   return (
     <section className={`profile ${isLoading && 'profile_hidden'}`}>
-      <h2 className='profile__title'>{`Привет, ${username}!`}</h2>
+      <h2 className='profile__title'>{`Привет, ${name}!`}</h2>
       <form className='profile__form' name='user-update' noValidate onSubmit={handleSubmit}>
         <fieldset className='profile__form-container profile__form-container_type_profile-info'>
           <div className='profile__form-row'>
@@ -69,7 +75,7 @@ function Profile({ isLoading, submitError, handleUpdateUserInfo, setSubmitError,
               type='text'
               id='name'
               name='name'
-              value={username || ''}
+              value={name || ''}
               required
               minLength={2}
               maxLength={30}
