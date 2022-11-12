@@ -34,6 +34,16 @@ function App() {
     setIsInfoTooltipOpen(false);
   };
 
+  function redirectUnauthorized(err) {
+    if (err.status === 401) {
+      setLoggedIn(false);
+      setCurrentUser({});
+      setSavedMovies([]);
+      localStorage.clear();
+      history.push('/');
+    }
+  }
+
   async function getUserData() {
     try {
       const response = await mainApi.getUserInfo();
@@ -41,7 +51,9 @@ function App() {
     } catch (err) {
       setIsInfoTooltipOpen(true);
       setIsOperationSuccessful(false);
-      setOperationResultMessage(`Невозможно отобразить данные пользователя. ${err}`);
+      setOperationResultMessage(`Невозможно отобразить данные пользователя. ${err.message}`);
+
+      redirectUnauthorized(err);
     }
   };
 
@@ -52,7 +64,9 @@ function App() {
     } catch (err) {
       setIsInfoTooltipOpen(true);
       setIsOperationSuccessful(false);
-      setOperationResultMessage(`Невозможно отобразить сохраненные фильмы. ${err}`);
+      setOperationResultMessage(`Невозможно отобразить сохраненные фильмы. ${err.message}`);
+
+      redirectUnauthorized(err);
     }
   };
 
@@ -63,7 +77,7 @@ function App() {
       history.push('/movies')
     })
     .then(() => localStorage.setItem('isLoggedIn', loggedIn))
-    .catch(err => setSubmitError(err))
+    .catch(err => setSubmitError(err.message))
   }
 
   function handleLogin({ email, password }) {
@@ -73,7 +87,7 @@ function App() {
       history.push('/movies');
     })
     .then(() => localStorage.setItem('isLoggedIn', loggedIn))
-    .catch(err => setSubmitError(err))
+    .catch(err => setSubmitError(err.message))
   }
 
   function handleUpdateUserInfo({ name, email }) {
@@ -84,7 +98,7 @@ function App() {
       setIsOperationSuccessful(true);
       setOperationResultMessage('Данные пользователя успешно обновлены!');
     })
-    .catch(err => setSubmitError(err))
+    .catch(err => setSubmitError(err.message))
   }
 
   function handleUserSignOut() {
@@ -98,7 +112,7 @@ function App() {
       localStorage.clear();
       history.push('/');
     })
-    .catch(err => setSubmitError(err))
+    .catch(err => setSubmitError(err.message))
   }
 
   function handleSaveMovie(movie) {
@@ -107,7 +121,7 @@ function App() {
     .catch((err) => {
       setIsInfoTooltipOpen(true);
       setIsOperationSuccessful(false);
-      setOperationResultMessage(`Невозможно сохранить фильм. ${err}`);
+      setOperationResultMessage(`Невозможно сохранить фильм. ${err.message}`);
     })
   }
 
@@ -120,7 +134,7 @@ function App() {
     .catch((err) => {
       setIsInfoTooltipOpen(true);
       setIsOperationSuccessful(false);
-      setOperationResultMessage(`Невозможно убрать фильм из сохраненных. ${err}`);
+      setOperationResultMessage(`Невозможно убрать фильм из сохраненных. ${err.message}`);
     })
     .finally(() => setIsLoading(false))
   }
@@ -132,7 +146,9 @@ function App() {
       .catch((err) => {
         setIsInfoTooltipOpen(true);
         setIsOperationSuccessful(false);
-        setOperationResultMessage(`Невозможно отобразить данные пользователя. ${err}`);
+        setOperationResultMessage(`Невозможно отобразить данные пользователя. ${err.message}`);
+
+        redirectUnauthorized(err);
       })
       .finally(() => setIsLoading(false))
     }
@@ -145,7 +161,9 @@ function App() {
       .catch((err) => {
         setIsInfoTooltipOpen(true);
         setIsOperationSuccessful(false);
-        setOperationResultMessage(`Невозможно отобразить сохраненные фильмы. ${err}`);
+        setOperationResultMessage(`Невозможно отобразить сохраненные фильмы. ${err.message}`);
+
+        redirectUnauthorized(err);
       })
       .finally(() => setIsLoading(false))
     }

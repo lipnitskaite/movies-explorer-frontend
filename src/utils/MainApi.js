@@ -1,3 +1,9 @@
+import {
+  UNAUTHORIZED_ERROR_MESSAGE,
+  CONFLICT_RESPONSE_ERROR_MESSAGE,
+  GENERAL_ERROR_MESSAGE
+} from '../utils/constants';
+
 export default class MainApi {
   constructor({ address, headers }) {
     this._address = address;
@@ -9,12 +15,11 @@ export default class MainApi {
       case 200:
         return res.json();
       case 401:
-        return Promise.reject('Неправильные почта или пароль.');
+        return Promise.reject({ message: UNAUTHORIZED_ERROR_MESSAGE, status: res.status });
       case 409:
-        return Promise.reject('Пользователь с такой почтой уже зарегистрирован.');
+        return Promise.reject({ message: CONFLICT_RESPONSE_ERROR_MESSAGE, status: res.status });
       default:
-        console.log(res.status);
-        return Promise.reject('Что-то пошло не так.');
+        return Promise.reject({ message: GENERAL_ERROR_MESSAGE, status: res.status });
     }
   };
   

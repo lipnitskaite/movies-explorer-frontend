@@ -16,6 +16,8 @@ const moviesApi = new MoviesApi({
 
 const SHORT_MOVIES_DURATION = 40;
 const NOT_FOUND_ERROR_MESSAGE = 'Ничего не найдено.';
+const UNAUTHORIZED_ERROR_MESSAGE = 'Неправильные почта или пароль.';
+const CONFLICT_RESPONSE_ERROR_MESSAGE = 'Пользователь с такой почтой уже зарегистрирован.';
 const EMPTY_QUERY_ERROR_MESSAGE = 'Нужно ввести ключевое слово.';
 const GENERAL_ERROR_MESSAGE = 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз';
 
@@ -24,6 +26,8 @@ export {
   moviesApi,
   SHORT_MOVIES_DURATION,
   NOT_FOUND_ERROR_MESSAGE,
+  UNAUTHORIZED_ERROR_MESSAGE,
+  CONFLICT_RESPONSE_ERROR_MESSAGE,
   EMPTY_QUERY_ERROR_MESSAGE,
   GENERAL_ERROR_MESSAGE,
 }
