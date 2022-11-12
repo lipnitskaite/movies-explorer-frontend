@@ -14,36 +14,51 @@ function SearchForm({
   filterShortMovies,
   shortMovies,
   filteredMovies,
-  }) {
-    const location = useLocation();
-    const [isValid, setIsValid] = useState(true);
-    const [submitError, setSubmitError] = useState('');
+}) {
+  const location = useLocation();
+  const [isMoviesValid, setIsMoviesValid] = useState(true);
+  const [isSavedMoviesValid, setIsSavedMoviesValid] = useState(true);
+  const [submitError, setSubmitError] = useState('');
 
-    function handleChange(event) {
-      setSearchTerm(event.target.value);
-    };
+  function handleChange(event) {
+    setSearchTerm(event.target.value);
+  };
 
-    function showErrorMessage() {
+  function showErrorMessage() {
+    if (location.pathname === '/movies') {
       if (!searchTerm) {
         setSubmitError(EMPTY_QUERY_ERROR_MESSAGE);
-        setIsValid(false);
+        setIsMoviesValid(false);
+        setIsSavedMoviesValid(true);
       } else if (searchTerm && filteredMovies.length === 0) {
         setSubmitError(NOT_FOUND_ERROR_MESSAGE);
-        setIsValid(false);
+        setIsMoviesValid(false);
+        setIsSavedMoviesValid(true);
+      }
+    } else if (location.pathname === '/saved-movies') {
+      if (!searchTerm) {
+        setSubmitError(EMPTY_QUERY_ERROR_MESSAGE);
+        setIsSavedMoviesValid(false);
+        setIsMoviesValid(true);
+      } else if (searchTerm && filteredMovies.length === 0) {
+        setSubmitError(NOT_FOUND_ERROR_MESSAGE);
+        setIsSavedMoviesValid(false);
+        setIsMoviesValid(true);
       }
     }
+  }
 
-    function handleSubmit(event) {
-      event.preventDefault();
+  function handleSubmit(event) {
+    event.preventDefault();
 
-      if (location.pathname === '/movies') {
-        handleMovieSearch();
-      } else if (location.pathname === '/saved-movies') {
-        handleSavedMovieSearch();
-      }
-
-      showErrorMessage();
+    if (location.pathname === '/movies') {
+      handleMovieSearch();
+    } else if (location.pathname === '/saved-movies') {
+      handleSavedMovieSearch();
     }
+
+    showErrorMessage();
+  }
   
   return (
     <section className='search-form'>
@@ -64,7 +79,7 @@ function SearchForm({
           shortMovies={shortMovies}
         />
       </div>
-      <span className={`${isValid ? 'search-form__error' : 'search-form__error search-form__error_active'}`}>{submitError}</span>
+      <span className={`${(!isMoviesValid || !isSavedMoviesValid) ? 'search-form__error search-form__error_active' : 'search-form__error'}`}>{submitError}</span>
     </section>
   );
 }

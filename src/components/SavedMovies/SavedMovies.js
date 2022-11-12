@@ -50,7 +50,10 @@ function SavedMovies({
       <SavedMoviesCardList
         isLoading={isLoading}
         filteredSavedMovies={filteredSavedMovies}
+        searchTerm={searchTerm}
+        savedMovies={savedMovies}
         onDeleteCard={onDeleteCard}
+        isShortMovie={isShortMovie}
       />
     </main>
   );

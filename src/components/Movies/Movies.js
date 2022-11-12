@@ -2,13 +2,19 @@ import React, { useState } from 'react';
 
 import { moviesApi } from '../../utils/constants';
 import { handleMovieSearchFilter } from '../../utils/utils';
-import { NOT_FOUND_ERROR_MESSAGE, EMPTY_QUERY_ERROR_MESSAGE, GENERAL_ERROR_MESSAGE } from '../../utils/constants';
+import { GENERAL_ERROR_MESSAGE } from '../../utils/constants';
 
 import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 
-function Movies({ isLoading, setIsLoading, onSaveCard, savedMovies, onDeleteCard }) {
+function Movies({
+  isLoading,
+  setIsLoading,
+  onSaveCard,
+  savedMovies,
+  onDeleteCard
+}) {
   const [filteredMovies, setFilteredMovies] = useState(JSON.parse(localStorage.getItem('movies')) || []);
   const [isShortMovie, setIsShortMovie] = useState(localStorage.getItem('shortMovieSwitcher') === 'true');
   const [searchTerm, setSearchTerm] = useState(localStorage.getItem('movieSearchInput') || '');
@@ -18,14 +24,6 @@ function Movies({ isLoading, setIsLoading, onSaveCard, savedMovies, onDeleteCard
     setIsShortMovie(!isShortMovie);
   }
 
-  function showErrorMessage(results) {
-    if (!searchTerm) {
-      setSubmitError(EMPTY_QUERY_ERROR_MESSAGE);
-    } else if (searchTerm && results.length === 0) {
-      setSubmitError(NOT_FOUND_ERROR_MESSAGE);
-    }
-  }
-
   function handleMovieSearch() {
     moviesApi.getMovies()
     .then((movies) => {
@@ -33,7 +31,6 @@ function Movies({ isLoading, setIsLoading, onSaveCard, savedMovies, onDeleteCard
       const results = handleMovieSearchFilter(movies, searchTerm, isShortMovie);
 
       setFilteredMovies(results);
-      showErrorMessage(results);
 
       localStorage.setItem('movieSearchInput', searchTerm);
       localStorage.setItem('shortMovieSwitcher', isShortMovie);
