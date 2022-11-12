@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+import { validate } from 'react-email-validator';
 
 function UseFormValidation() {
   const [values, setValues] = useState({});
@@ -13,6 +14,12 @@ function UseFormValidation() {
     setValues({ ...values, [name]: value });
     setErrors({ ...errors, [name]: target.validationMessage });
     setIsValid(target.closest('form').checkValidity());
+
+    if (name === 'email') {
+       if (validate(value) === false) {
+        setIsValid(false);
+       }
+    }
   };
 
   const resetForm = useCallback(

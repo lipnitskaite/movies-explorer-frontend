@@ -67,6 +67,7 @@ function Register({ handleRegister, submitError, setSubmitError }) {
           className={`form__button ${!isValid && 'form__button_disabled'}`}
           type='submit'
           value='Зарегистрироваться'
+          disabled={!isValid ? true : false}
         >Зарегистрироваться</button>
       </form>
       <p className='auth__text'>Уже зарегистрированы? <Link className='auth__link' to={`./signin`}>Войти</Link></p>

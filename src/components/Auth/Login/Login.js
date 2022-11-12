@@ -57,6 +57,7 @@ function Login({ handleLogin, submitError, setSubmitError }) {
           className={`form__button ${!isValid && 'form__button_disabled'}`}
           type='submit'
           value='Войти'
+          disabled={!isValid ? true : false}
         >Войти</button>
       </form>
       <p className='auth__text'>Ещё не зарегистрированы? <Link className='auth__link' to={`./signup`}>Регистрация</Link></p>
