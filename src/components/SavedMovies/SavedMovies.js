@@ -1,57 +1,56 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import SearchForm from '../SearchForm/SearchForm';
 import SavedMoviesCardList from '../SavedMovies/SavedMoviesCardList/SavedMoviesCardList';
 import { handleMovieSearchFilter } from '../../utils/utils';
+import { GENERAL_ERROR_MESSAGE } from '../../utils/constants';
 
-
-function SavedMovies({ isLoading, setIsLoading, submitError, setSubmitError, onDeleteCard, savedMovies }) {
-  const [filteredMovies, setFilteredMovies] = useState();
-  const [isShortMovie, setIsShortMovie] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [isValid, setIsValid] = useState(true);
-
-  function handleChange(event) {
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
-
-    setSearchTerm(value);
-    setSubmitError({ ...submitError, [name]: target.validationMessage });
-    setIsValid(target.closest('form').checkValidity());
-  };
+function SavedMovies({
+  isLoading,
+  setIsLoading,
+  setSubmitError,
+  onDeleteCard,
+  savedMovies
+}) {
+  const [filteredSavedMovies, setFilteredSavedMovies] = useState(JSON.parse(localStorage.getItem('saved-movies')) || savedMovies);
+  const [isShortMovie, setIsShortMovie] = useState(localStorage.getItem('shortSavedMovieSwitcher') === 'true');
+  const [searchTerm, setSearchTerm] = useState(localStorage.getItem('savedMovieSearchInput') || '');
 
   function switchShortMovies() {
     setIsShortMovie(!isShortMovie);
   }
 
-  useEffect(() => {
+  function handleSavedMovieSearch() {
     try {
       const results = handleMovieSearchFilter(savedMovies, searchTerm, isShortMovie);
-      setFilteredMovies(results); 
+
+      setFilteredSavedMovies(results);
+
+      localStorage.setItem('savedMovieSearchInput', searchTerm);
+      localStorage.setItem('shortSavedMovieSwitcher', isShortMovie);
+      localStorage.setItem('saved-movies', JSON.stringify(results));
+
       setIsLoading(false);
     } catch (err) {
-      setSubmitError(err);
+      setSubmitError(GENERAL_ERROR_MESSAGE);
       setIsLoading(false);
     }
-  }, [searchTerm, isShortMovie, setIsLoading, savedMovies, setSubmitError]);
+  }
 
   return (
     <main className="content">
       <SearchForm 
         searchTerm={searchTerm}
-        isValid={isValid}
-        handleChange={handleChange}
+        setSearchTerm={setSearchTerm}
+        handleSavedMovieSearch={handleSavedMovieSearch}
         filterShortMovies={switchShortMovies}
         shortMovies={isShortMovie}
+        filteredMovies={filteredSavedMovies}
       />
       <SavedMoviesCardList
         isLoading={isLoading}
-        searchTerm={searchTerm}
-        savedFilteredMovies={filteredMovies}
-        savedMovies={savedMovies}
+        filteredSavedMovies={filteredSavedMovies}
         onDeleteCard={onDeleteCard}
-        isShortMovie={isShortMovie}
       />
     </main>
   );
