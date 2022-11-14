@@ -5,15 +5,20 @@ import UseFormValidation from '../../Validation/Validation';
 import { Link } from 'react-router-dom';
 import Logo from '../../Logo/Logo';
 
-function Register({ handleRegister, submitError, setSubmitError }) {
+function Register({
+  handleRegister,
+  submitError,
+  setSubmitError,
+  isDisabled,
+}) {
   const { values, handleChange, errors, isValid, resetForm } = UseFormValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
 
     handleRegister(values)
+    .then(() => resetForm())
     .catch(err => setSubmitError(err))
-    resetForm();
   }
   return (
     <section className='auth'>
@@ -35,6 +40,7 @@ function Register({ handleRegister, submitError, setSubmitError }) {
             minLength={2}
             maxLength={30}
             pattern='[A-Za-zа-яА-ЯёЁ\-\s]+'
+            disabled={isDisabled}
           ></input>
           <span className={`form__input-error ${errors.name && 'form__input-error_active'}`}>{errors.name || ''}</span>
           <label className='form__label' htmlFor='email'>E-mail</label>
@@ -46,6 +52,7 @@ function Register({ handleRegister, submitError, setSubmitError }) {
             name='email'
             value={values.email || ''}
             required
+            disabled={isDisabled}
           ></input>
           <span className={`form__input-error ${errors.email && 'form__input-error_active'}`}>{errors.email || ''}</span>
           <label className='form__label' htmlFor='password'>Пароль</label>
@@ -59,6 +66,7 @@ function Register({ handleRegister, submitError, setSubmitError }) {
             required
             minLength={2}
             maxLength={30}
+            disabled={isDisabled}
           ></input>
           <span className={`form__input-error ${errors.password && 'form__input-error_active'}`}>{errors.password || ''}</span>
         </fieldset>

@@ -5,10 +5,9 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Profile({
   isLoading,
-  submitError,
   handleUpdateUserInfo,
-  setSubmitError,
-  userSignOut
+  userSignOut,
+  isDisabled,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -17,6 +16,7 @@ function Profile({
   const [isEditing, setIsEditing] = useState(false);
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   useEffect(() => {
     if (currentUser) {
@@ -80,6 +80,7 @@ function Profile({
               minLength={2}
               maxLength={30}
               pattern='[A-Za-zа-яА-ЯёЁ\-\s]+'
+              disabled={isDisabled}
             ></input>
           </div>
           <span className={`form__input-error ${errors.name && 'form__input-error_active'}`}>{errors.name || ''}</span>
@@ -93,6 +94,7 @@ function Profile({
               name='email'
               value={email || ''}
               required
+              disabled={isDisabled}
             ></input>
           </div>
           <span className={`form__input-error ${errors.email && 'form__input-error_active'}`}>{errors.email || ''}</span>

@@ -25,6 +25,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [isOperationSuccessful, setIsOperationSuccessful] = useState(true);
+  const [isFormInputDisabled, setIsFormInputDisabled] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [submitError, setSubmitError] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
@@ -71,26 +72,35 @@ function App() {
   };
 
   function handleRegister({ name, email, password }) {
+    setIsFormInputDisabled(true);
     return mainApi.register(name, email, password)
     .then(() => {
       setLoggedIn(!loggedIn);
-      history.push('/movies')
+      history.push('/movies');
     })
     .then(() => localStorage.setItem('isLoggedIn', loggedIn))
-    .catch(err => setSubmitError(err.message))
+    .catch((err) => {
+      setSubmitError(err.message);
+      setIsFormInputDisabled(false);
+    })
   }
 
   function handleLogin({ email, password }) {
+    setIsFormInputDisabled(true);
     return mainApi.authorize(email, password)
     .then(() => {
       setLoggedIn(!loggedIn);
       history.push('/movies');
     })
     .then(() => localStorage.setItem('isLoggedIn', loggedIn))
-    .catch(err => setSubmitError(err.message))
+    .catch((err) => {
+      setSubmitError(err.message);
+      setIsFormInputDisabled(false);
+    })
   }
 
   function handleUpdateUserInfo({ name, email }) {
+    setIsFormInputDisabled(true);
     return mainApi.updateUserInfo(name, email)
     .then((userData) => {
       setCurrentUser(userData);
@@ -98,7 +108,10 @@ function App() {
       setIsOperationSuccessful(true);
       setOperationResultMessage('Данные пользователя успешно обновлены!');
     })
-    .catch(err => setSubmitError(err.message))
+    .catch((err) => {
+      setSubmitError(err.message);
+      setIsFormInputDisabled(false);
+    })
   }
 
   function handleUserSignOut() {
@@ -185,6 +198,7 @@ function App() {
             handleRegister={handleRegister}
             submitError={submitError}
             setSubmitError={setSubmitError}
+            isDisabled={isFormInputDisabled}
             />
           </ProtectedAuthRoute>
           <ProtectedAuthRoute path='/signin' loggedIn={loggedIn}>
@@ -192,6 +206,7 @@ function App() {
               handleLogin={handleLogin}
               submitError={submitError}
               setSubmitError={setSubmitError}
+              isDisabled={isFormInputDisabled}
             />
           </ProtectedAuthRoute>
           <ProtectedRoute path='/movies' loggedIn={loggedIn}>
@@ -225,11 +240,9 @@ function App() {
             />
             <Profile
               isLoading={isLoading}
-              submitError={submitError}
               handleUpdateUserInfo={handleUpdateUserInfo}
-              setCurrentUser={setCurrentUser}
-              setSubmitError={setSubmitError}
               userSignOut={handleUserSignOut}
+              isDisabled={isFormInputDisabled}
             />
           </ProtectedRoute>
           <Route path='*'>

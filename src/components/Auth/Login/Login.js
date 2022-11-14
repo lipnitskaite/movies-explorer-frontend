@@ -5,7 +5,12 @@ import UseFormValidation from '../../Validation/Validation';
 import { Link } from 'react-router-dom';
 import Logo from '../../Logo/Logo';
 
-function Login({ handleLogin, submitError, setSubmitError }) {
+function Login({
+  handleLogin,
+  submitError,
+  setSubmitError,
+  isDisabled,
+}) {
   const { values, handleChange, errors, isValid, resetForm } = UseFormValidation();
 
   function handleSubmit(e) {
@@ -36,6 +41,7 @@ function Login({ handleLogin, submitError, setSubmitError }) {
             name='email'
             value={values.email || ''}
             required
+            disabled={isDisabled}
           ></input>
           <span className={`form__input-error ${errors.email && 'form__input-error_active'}`}>{errors.email || ''}</span>
           <label className='form__label' htmlFor='password'>Пароль</label>
@@ -49,6 +55,7 @@ function Login({ handleLogin, submitError, setSubmitError }) {
             required
             minLength={2}
             maxLength={30}
+            disabled={isDisabled}
           ></input>
           <span className={`form__input-error ${errors.password && 'form__input-error_active'}`}>{errors.password || ''}</span>
         </fieldset>
