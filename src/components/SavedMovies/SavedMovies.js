@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import SearchForm from '../SearchForm/SearchForm';
+import Preloader from '../Preloader/Preloader';
 import SavedMoviesCardList from '../SavedMovies/SavedMoviesCardList/SavedMoviesCardList';
+
 import { handleMovieSearchFilter } from '../../utils/utils';
 import { NOT_FOUND_ERROR_MESSAGE, EMPTY_QUERY_ERROR_MESSAGE, GENERAL_ERROR_MESSAGE } from '../../utils/constants';
 
@@ -65,6 +67,9 @@ function SavedMovies({
         shortMovies={isShortMovie}
         isMoviesValid={isMoviesValid}
         submitError={submitError}
+      />
+      <Preloader 
+        isLoading={isLoading}
       />
       <SavedMoviesCardList
         isLoading={isLoading}
