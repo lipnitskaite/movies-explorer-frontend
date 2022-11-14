@@ -26,30 +26,32 @@ function Movies({
   }
 
   function handleMovieSearch() {
-    moviesApi.getMovies()
-    .then((movies) => {
-      movies.forEach(movie => movie.image.url = `https://api.nomoreparties.co${movie.image.url}`)
-      const results = handleMovieSearchFilter(movies, searchTerm, isShortMovie);
+    if (!searchTerm) {
+      setSubmitError(EMPTY_QUERY_ERROR_MESSAGE);
+      setIsMoviesValid(false);
+    } else {
+      moviesApi.getMovies()
+      .then((movies) => {
+        movies.forEach(movie => movie.image.url = `https://api.nomoreparties.co${movie.image.url}`)
+        const results = handleMovieSearchFilter(movies, searchTerm, isShortMovie);
 
-      setFilteredMovies(results);
+        setFilteredMovies(results);
 
-      localStorage.setItem('movieSearchInput', searchTerm);
-      localStorage.setItem('shortMovieSwitcher', isShortMovie);
-      localStorage.setItem('movies', JSON.stringify(results));
+        localStorage.setItem('movieSearchInput', searchTerm);
+        localStorage.setItem('shortMovieSwitcher', isShortMovie);
+        localStorage.setItem('movies', JSON.stringify(results));
 
-      if (!searchTerm) {
-        setSubmitError(EMPTY_QUERY_ERROR_MESSAGE);
-        setIsMoviesValid(false);
-      } else if (searchTerm && results.length === 0) {
-        setSubmitError(NOT_FOUND_ERROR_MESSAGE);
-        setIsMoviesValid(false);
-      } else {
-        setSubmitError('');
-        setIsMoviesValid(true);
-      }
-    })
-    .catch(() => setSubmitError(GENERAL_ERROR_MESSAGE))
-    .finally(() => setIsLoading(false))
+        if (results.length === 0) {
+          setSubmitError(NOT_FOUND_ERROR_MESSAGE);
+          setIsMoviesValid(false);
+        } else {
+          setSubmitError('');
+          setIsMoviesValid(true);
+        }
+      })
+      .catch(() => setSubmitError(GENERAL_ERROR_MESSAGE))
+      .finally(() => setIsLoading(false))
+    }
   }
 
   return (

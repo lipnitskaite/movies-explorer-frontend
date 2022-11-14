@@ -79,10 +79,8 @@ function App() {
       history.push('/movies');
     })
     .then(() => localStorage.setItem('isLoggedIn', loggedIn))
-    .catch((err) => {
-      setSubmitError(err.message);
-      setIsFormInputDisabled(false);
-    })
+    .catch(err => setSubmitError(err.message))
+    .finally(() => setIsFormInputDisabled(false))
   }
 
   function handleLogin({ email, password }) {
@@ -93,10 +91,8 @@ function App() {
       history.push('/movies');
     })
     .then(() => localStorage.setItem('isLoggedIn', loggedIn))
-    .catch((err) => {
-      setSubmitError(err.message);
-      setIsFormInputDisabled(false);
-    })
+    .catch(err => setSubmitError(err.message))
+    .finally(() => setIsFormInputDisabled(false))
   }
 
   function handleUpdateUserInfo({ name, email }) {
@@ -108,10 +104,8 @@ function App() {
       setIsOperationSuccessful(true);
       setOperationResultMessage('Данные пользователя успешно обновлены!');
     })
-    .catch((err) => {
-      setSubmitError(err.message);
-      setIsFormInputDisabled(false);
-    })
+    .catch(err => setSubmitError(err.message))
+    .finally(() => setIsFormInputDisabled(false))
   }
 
   function handleUserSignOut() {
