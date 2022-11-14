@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { moviesApi } from '../../utils/constants';
 import { handleMovieSearchFilter } from '../../utils/utils';
-import { GENERAL_ERROR_MESSAGE } from '../../utils/constants';
+import { NOT_FOUND_ERROR_MESSAGE, EMPTY_QUERY_ERROR_MESSAGE, GENERAL_ERROR_MESSAGE } from '../../utils/constants';
 
 import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
@@ -13,12 +13,13 @@ function Movies({
   setIsLoading,
   onSaveCard,
   savedMovies,
-  onDeleteCard
+  onDeleteCard,
 }) {
   const [filteredMovies, setFilteredMovies] = useState(JSON.parse(localStorage.getItem('movies')) || []);
   const [isShortMovie, setIsShortMovie] = useState(localStorage.getItem('shortMovieSwitcher') === 'true');
   const [searchTerm, setSearchTerm] = useState(localStorage.getItem('movieSearchInput') || '');
   const [submitError, setSubmitError] = useState('');
+  const [isMoviesValid, setIsMoviesValid] = useState(true);
 
   function switchShortMovies() {
     setIsShortMovie(!isShortMovie);
@@ -35,6 +36,17 @@ function Movies({
       localStorage.setItem('movieSearchInput', searchTerm);
       localStorage.setItem('shortMovieSwitcher', isShortMovie);
       localStorage.setItem('movies', JSON.stringify(results));
+
+      if (!searchTerm) {
+        setSubmitError(EMPTY_QUERY_ERROR_MESSAGE);
+        setIsMoviesValid(false);
+      } else if (searchTerm && results.length === 0) {
+        setSubmitError(NOT_FOUND_ERROR_MESSAGE);
+        setIsMoviesValid(false);
+      } else {
+        setSubmitError('');
+        setIsMoviesValid(true);
+      }
     })
     .catch(() => setSubmitError(GENERAL_ERROR_MESSAGE))
     .finally(() => setIsLoading(false))
@@ -49,7 +61,7 @@ function Movies({
         filterShortMovies={switchShortMovies}
         shortMovies={isShortMovie}
         submitError={submitError}
-        filteredMovies={filteredMovies}
+        isMoviesValid={isMoviesValid}
       />
       <Preloader 
         isLoading={isLoading}

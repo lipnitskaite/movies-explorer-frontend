@@ -29,7 +29,7 @@ function MoviesCardList({ isLoading, searchTerm, movies, onSaveCard, savedMovies
   }
 
   return (
-    <section className={`movies ${(isLoading || !searchTerm) && 'movies_hidden'}`}>
+    <section className={`movies ${(isLoading) && 'movies_hidden'}`}>
       <div className='movies__container'>
         {movies?.slice(0, totalQuantity)?.map((card) => (
           <MoviesCard

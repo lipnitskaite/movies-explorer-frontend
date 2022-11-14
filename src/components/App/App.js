@@ -214,7 +214,6 @@ function App() {
             <SavedMovies
               isLoading={isLoading}
               setIsLoading={setIsLoading}
-              setSubmitError={setSubmitError}
               onDeleteCard={handleDeleteMovie}
               savedMovies={savedMovies}
             />

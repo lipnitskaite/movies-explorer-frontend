@@ -3,18 +3,19 @@ import React, { useState } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import SavedMoviesCardList from '../SavedMovies/SavedMoviesCardList/SavedMoviesCardList';
 import { handleMovieSearchFilter } from '../../utils/utils';
-import { GENERAL_ERROR_MESSAGE } from '../../utils/constants';
+import { NOT_FOUND_ERROR_MESSAGE, EMPTY_QUERY_ERROR_MESSAGE, GENERAL_ERROR_MESSAGE } from '../../utils/constants';
 
 function SavedMovies({
   isLoading,
   setIsLoading,
-  setSubmitError,
   onDeleteCard,
   savedMovies
 }) {
   const [filteredSavedMovies, setFilteredSavedMovies] = useState(JSON.parse(localStorage.getItem('saved-movies')) || savedMovies);
   const [isShortMovie, setIsShortMovie] = useState(localStorage.getItem('shortSavedMovieSwitcher') === 'true');
   const [searchTerm, setSearchTerm] = useState(localStorage.getItem('savedMovieSearchInput') || '');
+  const [submitError, setSubmitError] = useState('');
+  const [isMoviesValid, setIsMoviesValid] = useState(true);
 
   function switchShortMovies() {
     setIsShortMovie(!isShortMovie);
@@ -29,6 +30,17 @@ function SavedMovies({
       localStorage.setItem('savedMovieSearchInput', searchTerm);
       localStorage.setItem('shortSavedMovieSwitcher', isShortMovie);
       localStorage.setItem('saved-movies', JSON.stringify(results));
+
+      if (!searchTerm) {
+        setSubmitError(EMPTY_QUERY_ERROR_MESSAGE);
+        setIsMoviesValid(false);
+      } else if (searchTerm && results.length === 0) {
+        setSubmitError(NOT_FOUND_ERROR_MESSAGE);
+        setIsMoviesValid(false);
+      } else {
+        setSubmitError('');
+        setIsMoviesValid(true);
+      }
 
       setIsLoading(false);
     } catch (err) {
@@ -45,7 +57,8 @@ function SavedMovies({
         handleSavedMovieSearch={handleSavedMovieSearch}
         filterShortMovies={switchShortMovies}
         shortMovies={isShortMovie}
-        filteredMovies={filteredSavedMovies}
+        isMoviesValid={isMoviesValid}
+        submitError={submitError}
       />
       <SavedMoviesCardList
         isLoading={isLoading}
