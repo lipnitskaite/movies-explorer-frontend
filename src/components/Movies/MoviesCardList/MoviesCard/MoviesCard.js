@@ -5,7 +5,13 @@ import { useLocation } from 'react-router-dom';
 
 import { transformMovieDuration } from '../../../../utils/utils';
 
-function MoviesCard({ card, image, isSaved, onSaveCard, onDeleteCard }) {
+function MoviesCard({
+  card,
+  image,
+  isSaved,
+  onSaveCard,
+  onDeleteCard
+}) {
   const location = useLocation();
 
   const handleSaveCard = () => onSaveCard(card);

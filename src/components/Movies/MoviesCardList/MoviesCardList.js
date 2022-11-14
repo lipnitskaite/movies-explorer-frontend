@@ -6,7 +6,13 @@ import MoviesCard from '../MoviesCardList/MoviesCard/MoviesCard';
 
 import { getSavedMovie } from '../../../utils/utils';
 
-function MoviesCardList({ isLoading, searchTerm, movies, onSaveCard, savedMovies, onDeleteCard }) {
+function MoviesCardList({
+  isLoading,
+  movies,
+  onSaveCard,
+  savedMovies,
+  onDeleteCard
+}) {
   const width = window.innerWidth;
   let initialCardsQuantity;
   let nextCardPerRow;

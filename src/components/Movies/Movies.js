@@ -68,7 +68,6 @@ function Movies({
       />
       <MoviesCardList
         isLoading={isLoading}
-        searchTerm={searchTerm}
         movies={filteredMovies}
         onSaveCard={onSaveCard}
         savedMovies={savedMovies}
