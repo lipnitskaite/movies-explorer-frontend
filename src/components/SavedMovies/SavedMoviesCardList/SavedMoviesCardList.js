@@ -4,26 +4,12 @@ import React from 'react';
 
 import MoviesCard from '../../Movies/MoviesCardList/MoviesCard/MoviesCard';
 
-function SavedMoviesCardList({
-  filteredSavedMovies,
-  searchTerm,
-  isLoading,
-  savedMovies,
-  onDeleteCard,
-  isShortMovie
-}) {
-  function renderMovies() {
-    if (!searchTerm && !isShortMovie) {
-      return savedMovies;
-    } else {
-      return filteredSavedMovies;
-    }
-  }
+function SavedMoviesCardList({ filteredSavedMovies, isLoading, onDeleteCard }) {
 
   return (
     <section className={`movies ${(isLoading) && 'movies_hidden'}`}>
       <div className='movies__container'>
-        {renderMovies()?.map((card) => (
+        {filteredSavedMovies?.map((card) => (
           <MoviesCard
             key={card.id}
             id={card.id}

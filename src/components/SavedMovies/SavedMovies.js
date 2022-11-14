@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import SearchForm from '../SearchForm/SearchForm';
 import SavedMoviesCardList from '../SavedMovies/SavedMoviesCardList/SavedMoviesCardList';
@@ -9,11 +9,11 @@ function SavedMovies({
   isLoading,
   setIsLoading,
   onDeleteCard,
-  savedMovies
+  savedMovies,
 }) {
-  const [filteredSavedMovies, setFilteredSavedMovies] = useState(JSON.parse(localStorage.getItem('saved-movies')) || savedMovies);
-  const [isShortMovie, setIsShortMovie] = useState(localStorage.getItem('shortSavedMovieSwitcher') === 'true');
-  const [searchTerm, setSearchTerm] = useState(localStorage.getItem('savedMovieSearchInput') || '');
+  const [filteredSavedMovies, setFilteredSavedMovies] = useState();
+  const [isShortMovie, setIsShortMovie] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
   const [submitError, setSubmitError] = useState('');
   const [isMoviesValid, setIsMoviesValid] = useState(true);
 
@@ -26,10 +26,6 @@ function SavedMovies({
       const results = handleMovieSearchFilter(savedMovies, searchTerm, isShortMovie);
 
       setFilteredSavedMovies(results);
-
-      localStorage.setItem('savedMovieSearchInput', searchTerm);
-      localStorage.setItem('shortSavedMovieSwitcher', isShortMovie);
-      localStorage.setItem('saved-movies', JSON.stringify(results));
 
       if (!searchTerm) {
         setSubmitError(EMPTY_QUERY_ERROR_MESSAGE);
@@ -49,6 +45,16 @@ function SavedMovies({
     }
   }
 
+  useEffect(() => {
+    if (!searchTerm) {
+      setFilteredSavedMovies(savedMovies);
+    } else {
+      const results = handleMovieSearchFilter(savedMovies, searchTerm, isShortMovie);
+
+      setFilteredSavedMovies(results);
+    }
+  }, [savedMovies])
+
   return (
     <main className="content">
       <SearchForm 
@@ -63,10 +69,7 @@ function SavedMovies({
       <SavedMoviesCardList
         isLoading={isLoading}
         filteredSavedMovies={filteredSavedMovies}
-        searchTerm={searchTerm}
-        savedMovies={savedMovies}
         onDeleteCard={onDeleteCard}
-        isShortMovie={isShortMovie}
       />
     </main>
   );
