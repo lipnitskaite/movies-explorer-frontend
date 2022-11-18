@@ -1,5 +1,5 @@
 
-# 'Movies Explorer'
+# Movies Explorer
 
 ## Project's description  
 
