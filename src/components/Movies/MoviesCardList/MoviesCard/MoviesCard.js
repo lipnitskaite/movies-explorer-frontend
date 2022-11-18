@@ -1,103 +1,46 @@
 import '../MoviesCard/MoviesCard.css';
 
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
-import movieImage from '../../../../images/pic__COLOR_pic.png';
+import { transformMovieDuration } from '../../../../utils/utils';
 
-function MoviesCard(props) {
+function MoviesCard({
+  card,
+  image,
+  isSaved,
+  onSaveCard,
+  onDeleteCard
+}) {
+  const location = useLocation();
+
+  const handleSaveCard = () => onSaveCard(card);
+  const handleDeleteCard = () => onDeleteCard(card);
+
   return (
-    <>
-      <article className='movie-card movies__cards'>
-        <img className='movie-card__image' src={movieImage} alt='Фрагмент из фильма "33 слова о дизайне"'></img>
-        <div className='movie-card__container'>
-          <h4 className='movie-card__title'>33 слова о дизайне</h4>
-          <input className={props.isSavedCard ? 'movie-card__toggle movie-card__toggle_disabled' : 'movie-card__toggle'} type='checkbox'></input>
-          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'} type='button'></button>
-        </div>
-        <p className='movie-card__text'>1ч42м</p>
-      </article>
-      <article className='movie-card movies__cards'>
-        <img className='movie-card__image' src={movieImage} alt='Фрагмент из фильма "33 слова о дизайне"'></img>
-        <div className='movie-card__container'>
-          <h4 className='movie-card__title'>33 слова о дизайне</h4>
-          <input className={props.isSavedCard ? 'movie-card__toggle movie-card__toggle_disabled' : 'movie-card__toggle'} type='checkbox'></input>
-          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'} type='button'></button>
-        </div>
-        <p className='movie-card__text'>1ч42м</p>
-      </article>
-      <article className='movie-card movies__cards'>
-        <img className='movie-card__image' src={movieImage} alt='Фрагмент из фильма "33 слова о дизайне"'></img>
-        <div className='movie-card__container'>
-          <h4 className='movie-card__title'>33 слова о дизайне</h4>
-          <input className={props.isSavedCard ? 'movie-card__toggle movie-card__toggle_disabled' : 'movie-card__toggle'} type='checkbox'></input>
-          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'} type='button'></button>
-        </div>
-        <p className='movie-card__text'>1ч42м</p>
-      </article>
-      <article className='movie-card movies__cards'>
-        <img className='movie-card__image' src={movieImage} alt='Фрагмент из фильма "33 слова о дизайне"'></img>
-        <div className='movie-card__container'>
-          <h4 className='movie-card__title'>33 слова о дизайне</h4>
-          <input className={props.isSavedCard ? 'movie-card__toggle movie-card__toggle_disabled' : 'movie-card__toggle'} type='checkbox'></input>
-          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'} type='button'></button>
-        </div>
-        <p className='movie-card__text'>1ч42м</p>
-      </article>
-      <article className='movie-card movies__cards'>
-        <img className='movie-card__image' src={movieImage} alt='Фрагмент из фильма "33 слова о дизайне"'></img>
-        <div className='movie-card__container'>
-          <h4 className='movie-card__title'>33 слова о дизайне</h4>
-          <input className={props.isSavedCard ? 'movie-card__toggle movie-card__toggle_disabled' : 'movie-card__toggle'} type='checkbox'></input>
-          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'} type='button'></button>
-        </div>
-        <p className='movie-card__text'>1ч42м</p>
-      </article>
-      <article className='movie-card movies__cards'>
-        <img className='movie-card__image' src={movieImage} alt='Фрагмент из фильма "33 слова о дизайне"'></img>
-        <div className='movie-card__container'>
-          <h4 className='movie-card__title'>33 слова о дизайне</h4>
-          <input className={props.isSavedCard ? 'movie-card__toggle movie-card__toggle_disabled' : 'movie-card__toggle'} type='checkbox'></input>
-          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'} type='button'></button>
-        </div>
-        <p className='movie-card__text'>1ч42м</p>
-      </article>
-      <article className='movie-card movies__cards'>
-        <img className='movie-card__image' src={movieImage} alt='Фрагмент из фильма "33 слова о дизайне"'></img>
-        <div className='movie-card__container'>
-          <h4 className='movie-card__title'>33 слова о дизайне</h4>
-          <input className={props.isSavedCard ? 'movie-card__toggle movie-card__toggle_disabled' : 'movie-card__toggle'} type='checkbox'></input>
-          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'} type='button'></button>
-        </div>
-        <p className='movie-card__text'>1ч42м</p>
-      </article>
-      <article className='movie-card movies__cards'>
-        <img className='movie-card__image' src={movieImage} alt='Фрагмент из фильма "33 слова о дизайне"'></img>
-        <div className='movie-card__container'>
-          <h4 className='movie-card__title'>33 слова о дизайне</h4>
-          <input className={props.isSavedCard ? 'movie-card__toggle movie-card__toggle_disabled' : 'movie-card__toggle'} type='checkbox'></input>
-          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'} type='button'></button>
-        </div>
-        <p className='movie-card__text'>1ч42м</p>
-      </article>
-      <article className='movie-card movies__cards'>
-        <img className='movie-card__image' src={movieImage} alt='Фрагмент из фильма "33 слова о дизайне"'></img>
-        <div className='movie-card__container'>
-          <h4 className='movie-card__title'>33 слова о дизайне</h4>
-          <input className={props.isSavedCard ? 'movie-card__toggle movie-card__toggle_disabled' : 'movie-card__toggle'} type='checkbox'></input>
-          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'} type='button'></button>
-        </div>
-        <p className='movie-card__text'>1ч42м</p>
-      </article>
-      <article className='movie-card movies__cards'>
-        <img className='movie-card__image' src={movieImage} alt='Фрагмент из фильма "33 слова о дизайне"'></img>
-        <div className='movie-card__container'>
-          <h4 className='movie-card__title'>33 слова о дизайне</h4>
-          <input className={props.isSavedCard ? 'movie-card__toggle movie-card__toggle_disabled' : 'movie-card__toggle'} type='checkbox'></input>
-          <button className={props.isSavedCard ? 'movie-card__button' : 'movie-card__button movie-card__button_disabled'} type='button'></button>
-        </div>
-        <p className='movie-card__text'>1ч42м</p>
-      </article>
-    </>
+    <article className='movie-card movies__cards'>
+      <a href={card.trailerLink} target='_blank' rel='noreferrer'>
+        <img className='movie-card__image' src={image} alt={`Фрагмент из фильма ${card.nameRU}`}></img>
+      </a>
+      <div className='movie-card__container'>
+        <h4 className='movie-card__title'>{card.nameRU}</h4>
+        {location.pathname === '/movies' && (
+          <button 
+          className={`movie-card__button movie-card__button_type_${isSaved ? 'saved' : 'save'}`}
+          type='button'
+          onClick={isSaved ? handleDeleteCard : handleSaveCard}
+        ></button>
+        )}
+        {location.pathname === '/saved-movies' && (
+          <button
+          className='movie-card__button movie-card__button_type_delete'
+          type='button'
+          onClick={handleDeleteCard}
+        ></button>
+        )}
+      </div>
+      <p className='movie-card__text'>{transformMovieDuration(card.duration)}</p>
+    </article>
   );
 }
 

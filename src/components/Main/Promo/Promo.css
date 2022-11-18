@@ -7,7 +7,7 @@
 .promo__container {
   box-sizing: border-box;
   width: 100%;
-  padding: 183px 0px 40px 0px;
+  padding: 260px 0px 40px 0px;
 }
 
 .promo__title {
@@ -37,7 +37,7 @@
 
 @media screen and (min-width: 768px) {
   .promo__container {
-    padding: 300px 44px 70px 44px;
+    padding: 375px 44px 70px 44px;
   }
 
   .promo__title {
@@ -50,7 +50,7 @@
 
 @media screen and (min-width: 1280px) {
   .promo__container {
-    padding: 50px 70px 60px 70px;
+    padding: 125px 70px 60px 70px;
   }
 
   .promo__title {

@@ -1,10 +1,10 @@
 .movie-card {
   box-sizing: border-box;
-  width: 93,8%;
-  max-width: 300px;
+  width: 260px;
   margin: 0 auto;
   margin-bottom: 20px;
-  padding: 0 12px 14px 12px;
+  padding: 0;
+  padding-bottom: 14px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,14 +14,18 @@
 }
 
 .movie-card__image {
-  margin: 0 -12px 14px -12px;
+  margin-bottom: 14px;
   height: 168px;
+  min-width: 100%;
+  width: 260px;
+  align-self: center;
 }
 
 .movie-card__container {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  padding: 0 12px;
 }
 
 .movie-card__title {
@@ -30,11 +34,18 @@
   font-weight: 500;
   font-size: 13px;
   line-height: 1.21;
+  max-width: 90%;
 }
 
-.movie-card__toggle {
-  -webkit-appearance: none;
+.movie-card__button {
+  box-sizing: border-box;
   cursor: pointer;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.movie-card__button_type_save {
   width: 16px;
   height: 16px;
   background-color: transparent;
@@ -43,54 +54,58 @@
   transition: background-color .3s;
 }
 
-.movie-card__toggle:checked {
+.movie-card__button_type_saved {
+  width: 16px;
+  height: 16px;
   background-color: var(--checkbox-enabled-bg-color);
+  border-radius: 50%;
+  border: 2px solid white;
+  transition: background-color .3s;
 }
 
-.movie-card__toggle_disabled {
-  display: none;
-}
-
-.movie-card__button {
-  box-sizing: border-box;
+.movie-card__button_type_delete {
   background: url('../../../../images/card_delete-button.svg') no-repeat center;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
   width: 8px;
-  border: none;
-}
-
-.movie-card__button_disabled {
-  display: none;
 }
 
 .movie-card__text {
   margin: 0;
-  padding: 0;
+  padding: 0 12px;
   font-weight: 400;
   font-size: 11px;
   line-height: 1.21;
   color: var(--dark-grey-text-color);
 }
 
+@media screen and (min-width: 320px) {
+  .movie-card {
+    width: 300px;
+  }
+
+  .movie-card__image {
+    width: 300px;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .movie-card {
-    max-width: 339px;
+    width: 339px;
     margin-bottom: 0;
   }
 
   .movie-card__image {
     height: 190px;
+    width: 339px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .movie-card {
-    max-width: 270px;
+    width: 270px;
   }
 
   .movie-card__image {
+    width: 270px;
     height: 151px;
   }
 
