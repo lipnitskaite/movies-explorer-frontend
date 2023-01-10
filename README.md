@@ -45,10 +45,4 @@ $ npm run start
 
 # to build app
 $ npm run build
-
-# to start server localhost:3000 at build directory
-$ npm run build
-
-# to run test suite
-$ npm run test
 ```
