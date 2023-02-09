@@ -45,7 +45,6 @@ Ongoing
     - Rewrite css code using modules + scss-preprocessor
     - Use Redux Toolkit for state storage
 
----
 
 ## Techs
 
@@ -60,11 +59,10 @@ Ongoing
 
 BEM, OOP<br>
 
----
 
 ## How to use
 
-Clone down this repository. You will need **node and npm** installed globally on your machine.<br>
+Clone down this repository. You will need **npm** installed globally on your machine.<br>
 
 ```
 # to clone down the repository
