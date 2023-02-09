@@ -54,9 +54,7 @@ Ongoing
 - HTML5 & CSS3
 - JavaScript
 - React.js 18.2.0
-- Node.js + Express.js 4.18.1
-- REST API
-- MondoDB<br>
+- REST API<br>
 
 ### Methodology
 
